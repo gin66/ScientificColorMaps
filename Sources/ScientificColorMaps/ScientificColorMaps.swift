@@ -1,10 +1,15 @@
 // Copyright (c) 2024, Jochen Kiemes
 // see LICENSE
 final class ScientificColorMaps: Sendable {
+    // This is an array of 256 triples in range 0 to 1
     let rgb_data: [(Float, Float, Float)]
 
-    init(raw data: [(Float, Float, Float)]) {
+    // If defined, then this is an array of 100 triples in range 0 to 1
+    let categorical: [(Float, Float, Float)]?
+
+    init(raw data: [(Float, Float, Float)], categories: [(Float, Float, Float)]? = nil) {
         rgb_data = data
+        categorical = categories
     }
     func discrete10() -> [(Float, Float, Float)] {
         [1, 29, 58, 86, 114, 143, 171, 199, 228, 256].map {

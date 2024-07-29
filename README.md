@@ -18,7 +18,7 @@ Every color palette offers 100 categories
 ## API of ScientificColorMaps
 * `name` ... String
 * `rgb_data` ... array of 256 [(Float, Float, Float)]
-* `categorical` ... array of 100 [(Float, Float, Float)]
+* `categorical` ... array of 100 [(Float, Float, Float)] if defined, otherwise nil
 * `discrete10() -> [(Float, Float, Float)]` ... subset of 10 colors
 * `discrete25() -> [(Float, Float, Float)]` ... subset of 25 colors
 * `discrete50()` -> [(Float, Float, Float)] ... subset of 50 colors

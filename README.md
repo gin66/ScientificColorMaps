@@ -1,5 +1,4 @@
 # Scientific Color Maps
-=====================
 
 A collection of scientifically accurate color maps for use in data visualization.
 
@@ -24,15 +23,15 @@ import ScientificColorMaps
 let colorMap = ScientificColorMaps.batlow
 ```
 
-## Color
-Each color is represented as tuple of three float values as red, green and blue.
+## Color Representation
+Each color is represented as tuple of three float values as red, green and blue. Each Float is in the range 0 to 1
 
 ## List of Color palettes
 Every color palette offers 256 colors
 `ScientificColorMaps.palettes() -> [ScientificColorMaps]`
 
 ## List of Color palettes with categories
-Every color palette offers 100 categories
+All color palettes, which offer in addition 100 categories
 `ScientificColorMaps.categorizedPalettes() -> [ScientificColorMaps]`
 
 ## API of ScientificColorMaps
@@ -46,7 +45,7 @@ Every color palette offers 100 categories
 
 # Code generator
 
-Just run `swift run' in the package directory, which will (re-)create the color palette swift files in folder `Sources/ScientificColorMaps`
+Just run `swift run` in the package directory, which will (re-)create the color palette swift files in folder `Sources/ScientificColorMaps`
 
 # Note:
 
@@ -54,8 +53,7 @@ API may change
 
 # License
 
-This package is licensed under the MIT License.
-The color data has its own license. See in the respective file +LICENCE.pdf
+This package is licensed under the MIT License. The color data has its own license. See in the respective file +LICENCE.pdf
 
 ## Acknowledgments
 

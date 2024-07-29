@@ -1,6 +1,6 @@
 # Scientific Color Maps for Swift
 
-This is package, which uses color data from https://www.fabiocrameri.ch/colourmaps/.
+This is a swift package, which uses color data from https://www.fabiocrameri.ch/colourmaps/.
 
 After package import, there is a static class available called `ScientificColorMaps`.
 

@@ -61,19 +61,19 @@ func readMap(map: String, categorical: Bool) -> [[Float]]? {
 
     // Construct the URL of the colormap file
     let baseUrl = currentDirectory
-            .appending(component: "ScientificColourMaps8")
-            .appending(component: map)
+            .appendingPathComponent("ScientificColourMaps8")
+            .appendingPathComponent(map)
     let fileUrl: URL
     if categorical {
         // Categorical colormaps are stored in a separate directory
         fileUrl = baseUrl
-            .appending(component: "CategoricalPalettes")
-            .appending(component: "\(map)S.txt")
+            .appendingPathComponent("CategoricalPalettes")
+            .appendingPathComponent("\(map)S.txt")
     }
     else {
         // Non-categorical colormaps are stored in the base directory
         fileUrl = baseUrl
-            .appending(component: "\(map).txt")
+            .appendingPathComponent("\(map).txt")
     }
 
     do {
@@ -186,9 +186,9 @@ for (map, cmPair) in maps {
     // Write the code to a file
     let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
     let fileUrl = currentDirectory
-            .appending(component: "Sources")
-            .appending(component: "ScientificColorMaps")
-            .appending(component: "\(map).swift")
+            .appendingPathComponent("Sources")
+            .appendingPathComponent("ScientificColorMaps")
+            .appendingPathComponent("\(map).swift")
     try code.write(to: fileUrl, atomically: true, encoding: .utf8)
 }
 
@@ -217,7 +217,7 @@ let code = swiftCode.joined(separator: "\n")
 // Write the code to a file
 let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 let fileUrl = currentDirectory
-        .appending(component: "Sources")
-        .appending(component: "ScientificColorMaps")
-        .appending(component: "Palettes.swift")
+        .appendingPathComponent("Sources")
+        .appendingPathComponent("ScientificColorMaps")
+        .appendingPathComponent("Palettes.swift")
 try code.write(to: fileUrl, atomically: true, encoding: .utf8)

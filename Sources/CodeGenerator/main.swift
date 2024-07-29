@@ -192,6 +192,9 @@ for (map, cmPair) in maps {
     try code.write(to: fileUrl, atomically: true, encoding: .utf8)
 }
 
+palettes.sort()
+palettesWithCategory.sort()
+
 // Create the Palettes.swift file
 var swiftCode: [String] = []
 swiftCode.append(fileHeader)

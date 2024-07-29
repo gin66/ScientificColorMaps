@@ -2,7 +2,7 @@
 // see LICENSE
 
 /// A class representing a scientific color map.
-public final class ScientificColorMaps: Sendable, Hashable {
+public final class ScientificColorMaps: Sendable, Hashable, Identifiable {
     /// The name of the color map.
     public let name: String
 

@@ -2,7 +2,7 @@
 // see LICENSE
 
 /// A class representing a scientific color map.
-public final class ScientificColorMaps: Sendable {
+public final class ScientificColorMaps: Sendable, Hashable {
     /// The name of the color map.
     public let name: String
 
@@ -17,6 +17,15 @@ public final class ScientificColorMaps: Sendable {
         self.name = name
         rgb_data = data
         categorical = categories
+    }
+
+    public static func == (lhs: ScientificColorMaps, rhs: ScientificColorMaps) -> Bool {
+        return lhs.name == rhs.name
+    }
+
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 
     /// Returns a discrete version of the color map with 10 evenly spaced colors.

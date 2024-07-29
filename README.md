@@ -16,7 +16,9 @@ Every color palette offers 100 categories
 `ScientificColorMaps.categorizedPalettes() -> [ScientificColorMaps]`
 
 ## API of ScientificColorMaps
-* `name` ... as String
+* `name` ... String
+* `rgb_data` ... array of 256 [(Float, Float, Float)]
+* `categorical` ... array of 100 [(Float, Float, Float)]
 * `discrete10() -> [(Float, Float, Float)]` ... subset of 10 colors
 * `discrete25() -> [(Float, Float, Float)]` ... subset of 25 colors
 * `discrete50()` -> [(Float, Float, Float)] ... subset of 50 colors
@@ -25,3 +27,7 @@ Every color palette offers 100 categories
 # Note:
 
 API may change
+
+# License
+
+The color data has its own license. See in the respective file +LICENCE.pdf

@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.315531, 0.096976, 0.229197),
       (0.312640, 0.098899, 0.233767),
    ]
-   static let vikO = ScientificColorMaps(raw: ScientificColorMaps.vikO_raw)
+   static let vikO = ScientificColorMaps("vikO", raw: ScientificColorMaps.vikO_raw)
 }

@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.710053, 0.224219, 0.594134),
       (0.701279, 0.158084, 0.624615),
    ]
-   static let buda = ScientificColorMaps(raw: ScientificColorMaps.buda_raw, categories: buda_category_raw)
+   static let buda = ScientificColorMaps("buda", raw: ScientificColorMaps.buda_raw, categories: buda_category_raw)
 }

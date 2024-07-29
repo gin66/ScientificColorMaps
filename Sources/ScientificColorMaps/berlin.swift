@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.991448, 0.671939, 0.670216),
       (0.999873, 0.680072, 0.679950),
    ]
-   static let berlin = ScientificColorMaps(raw: ScientificColorMaps.berlin_raw)
+   static let berlin = ScientificColorMaps("berlin", raw: ScientificColorMaps.berlin_raw)
 }

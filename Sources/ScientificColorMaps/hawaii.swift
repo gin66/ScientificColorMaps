@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.604930, 0.621618, 0.126124),
       (0.606084, 0.424928, 0.163317),
    ]
-   static let hawaii = ScientificColorMaps(raw: ScientificColorMaps.hawaii_raw, categories: hawaii_category_raw)
+   static let hawaii = ScientificColorMaps("hawaii", raw: ScientificColorMaps.hawaii_raw, categories: hawaii_category_raw)
 }

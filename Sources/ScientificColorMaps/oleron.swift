@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.989424, 0.983687, 0.890903),
       (0.990487, 0.990203, 0.900235),
    ]
-   static let oleron = ScientificColorMaps(raw: ScientificColorMaps.oleron_raw)
+   static let oleron = ScientificColorMaps("oleron", raw: ScientificColorMaps.oleron_raw)
 }

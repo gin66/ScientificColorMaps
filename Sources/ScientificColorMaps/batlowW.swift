@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.986319, 0.777917, 0.748321),
       (0.977623, 0.751759, 0.708191),
    ]
-   static let batlowW = ScientificColorMaps(raw: ScientificColorMaps.batlowW_raw, categories: batlowW_category_raw)
+   static let batlowW = ScientificColorMaps("batlowW", raw: ScientificColorMaps.batlowW_raw, categories: batlowW_category_raw)
 }

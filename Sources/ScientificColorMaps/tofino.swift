@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.848297, 0.893962, 0.603631),
       (0.860031, 0.900031, 0.609764),
    ]
-   static let tofino = ScientificColorMaps(raw: ScientificColorMaps.tofino_raw)
+   static let tofino = ScientificColorMaps("tofino", raw: ScientificColorMaps.tofino_raw)
 }

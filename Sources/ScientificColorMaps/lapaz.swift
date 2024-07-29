@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.530620, 0.623035, 0.607177),
       (0.926488, 0.816815, 0.739352),
    ]
-   static let lapaz = ScientificColorMaps(raw: ScientificColorMaps.lapaz_raw, categories: lapaz_category_raw)
+   static let lapaz = ScientificColorMaps("lapaz", raw: ScientificColorMaps.lapaz_raw, categories: lapaz_category_raw)
 }

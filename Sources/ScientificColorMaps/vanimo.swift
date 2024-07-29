@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.736200, 0.980634, 0.631914),
       (0.744576, 0.991413, 0.647477),
    ]
-   static let vanimo = ScientificColorMaps(raw: ScientificColorMaps.vanimo_raw)
+   static let vanimo = ScientificColorMaps("vanimo", raw: ScientificColorMaps.vanimo_raw)
 }

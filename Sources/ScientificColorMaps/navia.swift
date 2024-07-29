@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.293713, 0.577887, 0.478456),
       (0.513668, 0.751981, 0.409686),
    ]
-   static let navia = ScientificColorMaps(raw: ScientificColorMaps.navia_raw, categories: navia_category_raw)
+   static let navia = ScientificColorMaps("navia", raw: ScientificColorMaps.navia_raw, categories: navia_category_raw)
 }

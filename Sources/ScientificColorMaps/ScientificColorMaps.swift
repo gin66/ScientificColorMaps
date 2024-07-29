@@ -1,13 +1,16 @@
 // Copyright (c) 2024, Jochen Kiemes
 // see LICENSE
 final class ScientificColorMaps: Sendable {
+    let name: String
+
     // This is an array of 256 triples in range 0 to 1
     let rgb_data: [(Float, Float, Float)]
 
     // If defined, then this is an array of 100 triples in range 0 to 1
     let categorical: [(Float, Float, Float)]?
 
-    init(raw data: [(Float, Float, Float)], categories: [(Float, Float, Float)]? = nil) {
+    init(_ name: String, raw data: [(Float, Float, Float)], categories: [(Float, Float, Float)]? = nil) {
+        self.name = name
         rgb_data = data
         categorical = categories
     }

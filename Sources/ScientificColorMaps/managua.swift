@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.501444, 0.899006, 0.995121),
       (0.504115, 0.907076, 0.999779),
    ]
-   static let managua = ScientificColorMaps(raw: ScientificColorMaps.managua_raw)
+   static let managua = ScientificColorMaps("managua", raw: ScientificColorMaps.managua_raw)
 }

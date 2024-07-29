@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.018222, 0.199913, 0.600048),
       (0.009824, 0.192129, 0.596704),
    ]
-   static let roma = ScientificColorMaps(raw: ScientificColorMaps.roma_raw)
+   static let roma = ScientificColorMaps("roma", raw: ScientificColorMaps.roma_raw)
 }

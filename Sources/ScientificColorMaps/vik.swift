@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.356785, 0.004035, 0.030327),
       (0.350423, 0.000061, 0.030499),
    ]
-   static let vik = ScientificColorMaps(raw: ScientificColorMaps.vik_raw)
+   static let vik = ScientificColorMaps("vik", raw: ScientificColorMaps.vik_raw)
 }

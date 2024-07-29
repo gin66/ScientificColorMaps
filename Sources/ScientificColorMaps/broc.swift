@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.155539, 0.156487, 0.008001),
       (0.150046, 0.150558, 0.001930),
    ]
-   static let broc = ScientificColorMaps(raw: ScientificColorMaps.broc_raw)
+   static let broc = ScientificColorMaps("broc", raw: ScientificColorMaps.broc_raw)
 }

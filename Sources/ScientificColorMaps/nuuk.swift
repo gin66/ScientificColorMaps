@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.637043, 0.653816, 0.594542),
       (0.185830, 0.395300, 0.511845),
    ]
-   static let nuuk = ScientificColorMaps(raw: ScientificColorMaps.nuuk_raw, categories: nuuk_category_raw)
+   static let nuuk = ScientificColorMaps("nuuk", raw: ScientificColorMaps.nuuk_raw, categories: nuuk_category_raw)
 }

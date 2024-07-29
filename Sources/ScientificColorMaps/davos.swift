@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.441970, 0.567921, 0.567154),
       (0.734808, 0.781649, 0.580351),
    ]
-   static let davos = ScientificColorMaps("davos", raw: ScientificColorMaps.davos_raw, categories: davos_category_raw)
+   public static let davos = ScientificColorMaps("davos", raw: ScientificColorMaps.davos_raw, categories: davos_category_raw)
 }

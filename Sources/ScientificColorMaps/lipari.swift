@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.030209, 0.145478, 0.251025),
       (0.351412, 0.363861, 0.476608),
    ]
-   static let lipari = ScientificColorMaps("lipari", raw: ScientificColorMaps.lipari_raw, categories: lipari_category_raw)
+   public static let lipari = ScientificColorMaps("lipari", raw: ScientificColorMaps.lipari_raw, categories: lipari_category_raw)
 }

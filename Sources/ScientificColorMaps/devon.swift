@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.644686, 0.634493, 0.920929),
       (0.734158, 0.710651, 0.945148),
    ]
-   static let devon = ScientificColorMaps("devon", raw: ScientificColorMaps.devon_raw, categories: devon_category_raw)
+   public static let devon = ScientificColorMaps("devon", raw: ScientificColorMaps.devon_raw, categories: devon_category_raw)
 }

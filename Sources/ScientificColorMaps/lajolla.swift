@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.896210, 0.524808, 0.316878),
       (0.998993, 0.990779, 0.774513),
    ]
-   static let lajolla = ScientificColorMaps("lajolla", raw: ScientificColorMaps.lajolla_raw, categories: lajolla_category_raw)
+   public static let lajolla = ScientificColorMaps("lajolla", raw: ScientificColorMaps.lajolla_raw, categories: lajolla_category_raw)
 }

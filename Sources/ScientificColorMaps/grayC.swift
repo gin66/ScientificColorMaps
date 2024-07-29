@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.355115, 0.355115, 0.355115),
       (0.900298, 0.900298, 0.900298),
    ]
-   static let grayC = ScientificColorMaps("grayC", raw: ScientificColorMaps.grayC_raw, categories: grayC_category_raw)
+   public static let grayC = ScientificColorMaps("grayC", raw: ScientificColorMaps.grayC_raw, categories: grayC_category_raw)
 }

@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.450334, 0.358597, 0.028028),
       (0.374498, 0.582935, 0.520736),
    ]
-   static let glasgow = ScientificColorMaps("glasgow", raw: ScientificColorMaps.glasgow_raw, categories: glasgow_category_raw)
+   public static let glasgow = ScientificColorMaps("glasgow", raw: ScientificColorMaps.glasgow_raw, categories: glasgow_category_raw)
 }

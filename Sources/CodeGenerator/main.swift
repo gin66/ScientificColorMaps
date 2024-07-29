@@ -170,11 +170,11 @@ for (map, cmPair) in maps {
         swiftCode.append("   ]")
 
         // Add the palette to the ScientificColorMaps extension
-        swiftCode.append("   static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw, categories: \(map)_category_raw)")
+        swiftCode.append("   public static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw, categories: \(map)_category_raw)")
     }
     else {
         // Add the palette to the ScientificColorMaps extension
-        swiftCode.append("   static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw)")
+        swiftCode.append("   public static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw)")
     }
 
     // Close the extension
@@ -195,14 +195,14 @@ for (map, cmPair) in maps {
 // Create the Palettes.swift file
 var swiftCode: [String] = []
 swiftCode.append(fileHeader)
-swiftCode.append("   static func palettes() -> [ScientificColorMaps] {")
+swiftCode.append("   public static func palettes() -> [ScientificColorMaps] {")
 swiftCode.append("      [")
 for palette in palettes {
     swiftCode.append("        ScientificColorMaps.\(palette),")
 }
 swiftCode.append("      ]")
 swiftCode.append("   }")
-swiftCode.append("   static func categorizedPalettes() -> [ScientificColorMaps] {")
+swiftCode.append("   public static func categorizedPalettes() -> [ScientificColorMaps] {")
 swiftCode.append("      [")
 for palette in palettesWithCategory {
     swiftCode.append("        ScientificColorMaps.\(palette),")

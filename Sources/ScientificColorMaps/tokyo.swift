@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.450847, 0.420588, 0.325225),
       (0.511037, 0.678564, 0.378368),
    ]
-   static let tokyo = ScientificColorMaps("tokyo", raw: ScientificColorMaps.tokyo_raw, categories: tokyo_category_raw)
+   public static let tokyo = ScientificColorMaps("tokyo", raw: ScientificColorMaps.tokyo_raw, categories: tokyo_category_raw)
 }

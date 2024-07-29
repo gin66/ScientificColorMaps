@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.060124, 0.303780, 0.005140),
       (0.049098, 0.296663, 0.000000),
    ]
-   static let bam = ScientificColorMaps("bam", raw: ScientificColorMaps.bam_raw)
+   public static let bam = ScientificColorMaps("bam", raw: ScientificColorMaps.bam_raw)
 }

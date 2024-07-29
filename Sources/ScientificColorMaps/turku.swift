@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.779960, 0.643752, 0.462766),
       (0.490030, 0.481079, 0.318289),
    ]
-   static let turku = ScientificColorMaps("turku", raw: ScientificColorMaps.turku_raw, categories: turku_category_raw)
+   public static let turku = ScientificColorMaps("turku", raw: ScientificColorMaps.turku_raw, categories: turku_category_raw)
 }

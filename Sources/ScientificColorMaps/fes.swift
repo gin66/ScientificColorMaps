@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.925881, 0.923186, 0.975892),
       (0.929608, 0.928963, 0.987857),
    ]
-   static let fes = ScientificColorMaps("fes", raw: ScientificColorMaps.fes_raw)
+   public static let fes = ScientificColorMaps("fes", raw: ScientificColorMaps.fes_raw)
 }

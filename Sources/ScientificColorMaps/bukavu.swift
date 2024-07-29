@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.926219, 0.923605, 0.976769),
       (0.929921, 0.929373, 0.988709),
    ]
-   static let bukavu = ScientificColorMaps("bukavu", raw: ScientificColorMaps.bukavu_raw)
+   public static let bukavu = ScientificColorMaps("bukavu", raw: ScientificColorMaps.bukavu_raw)
 }

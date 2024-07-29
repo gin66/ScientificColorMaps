@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.846629, 0.565694, 0.702170),
       (0.931799, 0.886264, 0.954659),
    ]
-   static let acton = ScientificColorMaps("acton", raw: ScientificColorMaps.acton_raw, categories: acton_category_raw)
+   public static let acton = ScientificColorMaps("acton", raw: ScientificColorMaps.acton_raw, categories: acton_category_raw)
 }

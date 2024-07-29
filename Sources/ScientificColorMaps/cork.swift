@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.060486, 0.167279, 0.015026),
       (0.059680, 0.160768, 0.011816),
    ]
-   static let cork = ScientificColorMaps("cork", raw: ScientificColorMaps.cork_raw)
+   public static let cork = ScientificColorMaps("cork", raw: ScientificColorMaps.cork_raw)
 }

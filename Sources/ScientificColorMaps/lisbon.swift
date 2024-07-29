@@ -268,5 +268,5 @@ extension ScientificColorMaps {
       (0.992296, 0.991379, 0.839477),
       (0.999870, 0.999998, 0.849990),
    ]
-   static let lisbon = ScientificColorMaps("lisbon", raw: ScientificColorMaps.lisbon_raw)
+   public static let lisbon = ScientificColorMaps("lisbon", raw: ScientificColorMaps.lisbon_raw)
 }

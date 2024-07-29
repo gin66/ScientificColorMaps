@@ -370,5 +370,5 @@ extension ScientificColorMaps {
       (0.269365, 0.465931, 0.535653),
       (0.450983, 0.649560, 0.463220),
    ]
-   static let imola = ScientificColorMaps("imola", raw: ScientificColorMaps.imola_raw, categories: imola_category_raw)
+   public static let imola = ScientificColorMaps("imola", raw: ScientificColorMaps.imola_raw, categories: imola_category_raw)
 }

@@ -1,0 +1,1 @@
+The color data is retrieved from https://www.fabiocrameri.ch/colourmaps/

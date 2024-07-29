@@ -4,13 +4,13 @@
 /// A class representing a scientific color map.
 public final class ScientificColorMaps: Sendable {
     /// The name of the color map.
-    let name: String
+    public let name: String
 
     /// An array of 256 triples in the range 0 to 1, representing the RGB data of the color map.
-    let rgb_data: [(Float, Float, Float)]
+    public let rgb_data: [(Float, Float, Float)]
 
     /// An optional array of 100 triples in the range 0 to 1, representing categorical data for the color map.
-    let categorical: [(Float, Float, Float)]?
+    public let categorical: [(Float, Float, Float)]?
 
     /// Initializes a new `ScientificColorMaps` instance with the given name, RGB data, and optional categorical data.
     init(_ name: String, raw data: [(Float, Float, Float)], categories: [(Float, Float, Float)]? = nil) {
@@ -20,7 +20,7 @@ public final class ScientificColorMaps: Sendable {
     }
 
     /// Returns a discrete version of the color map with 10 evenly spaced colors.
-    func discrete10() -> [(Float, Float, Float)] {
+    public func discrete10() -> [(Float, Float, Float)] {
         // Select every 26th element starting from the first element (index 0)
         [1, 29, 58, 86, 114, 143, 171, 199, 228, 256].map {
             rgb_data[$0-1]
@@ -28,7 +28,7 @@ public final class ScientificColorMaps: Sendable {
     }
 
     /// Returns a discrete version of the color map with 25 evenly spaced colors.
-    func discrete25() -> [(Float, Float, Float)] {
+    public func discrete25() -> [(Float, Float, Float)] {
         // Select every 10th element starting from the first element (index 0)
         [1, 12, 22, 33, 44, 54, 65, 75, 86, 97, 107,
          118, 129, 139, 150, 160, 171, 182, 192, 203,
@@ -38,7 +38,7 @@ public final class ScientificColorMaps: Sendable {
     }
 
     /// Returns a discrete version of the color map with 50 evenly spaced colors.
-    func discrete50() -> [(Float, Float, Float)] {
+    public func discrete50() -> [(Float, Float, Float)] {
         // Select every 5th element starting from the first element (index 0)
         [1, 6, 11, 17, 22, 27, 32, 37, 43, 48, 53, 58,
          63, 69, 74, 79, 84, 89, 95, 100, 105, 110, 115,
@@ -50,7 +50,7 @@ public final class ScientificColorMaps: Sendable {
     }
 
     /// Returns a discrete version of the color map with 100 evenly spaced colors.
-    func discrete100() -> [(Float, Float, Float)] {
+    public func discrete100() -> [(Float, Float, Float)] {
         // Select every 2.5th element starting from the first element (index 0)
         [1, 4, 6, 9, 11, 14, 16, 19, 22, 24, 27, 29,
          32, 34, 37, 40, 42, 45, 47, 50, 53, 55, 58,

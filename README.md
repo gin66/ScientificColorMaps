@@ -51,6 +51,10 @@ Just run `swift run` in the package directory, which will (re-)create the color 
 
 API may change
 
+# Colors
+
+![Colormaps](./ScientificColourMaps8/+ScientificColourMaps8-FabioCrameri.png)
+
 # License
 
 This package is licensed under the MIT License. The color data has its own license. See in the respective file +LICENCE.pdf

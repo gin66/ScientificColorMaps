@@ -16,11 +16,11 @@ Every color palette offers 100 categories
 `ScientificColorMaps.categorizedPalettes() -> [ScientificColorMaps]`
 
 ## API of ScientificColorMaps
-`name` ... as String
-`discrete10() -> [(Float, Float, Float)]` ... subset of 10 colors
-`discrete25() -> [(Float, Float, Float)]` ... subset of 25 colors
-`discrete50()` -> [(Float, Float, Float)] ... subset of 50 colors
-`discrete100() -> [(Float, Float, Float)]` ... subset of 100 colors
+* `name` ... as String
+* `discrete10() -> [(Float, Float, Float)]` ... subset of 10 colors
+* `discrete25() -> [(Float, Float, Float)]` ... subset of 25 colors
+* `discrete50()` -> [(Float, Float, Float)] ... subset of 50 colors
+* `discrete100() -> [(Float, Float, Float)]` ... subset of 100 colors
 
 # Note:
 

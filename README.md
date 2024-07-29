@@ -1,8 +1,28 @@
-# Scientific Color Maps for Swift
+# Scientific Color Maps
+=====================
 
-This is a swift package, which uses color data from https://www.fabiocrameri.ch/colourmaps/.
+A collection of scientifically accurate color maps for use in data visualization.
 
-After package import, there is a static class available called `ScientificColorMaps`.
+## Overview
+
+This package provides a set of pre-defined color maps that can be used to visualize data. Each color map is designed to accurately represent the underlying data, taking into account human perception and color theory.
+
+## Features
+
+* 32 scientifically accurate color maps, each with its own unique characteristics and uses.
+* Categorized palettes for easy selection and use.
+* Support for discrete color sampling (10, 25, 50, and 100 samples).
+* Easy to use and integrate into your Swift project.
+
+## Usage
+
+To use the color maps in this package, simply import it into your Swift project and use the global instance of the desired color map. For example:
+
+```swift
+import ScientificColorMaps
+
+let colorMap = ScientificColorMaps.batlow
+```
 
 ## Color
 Each color is represented as tuple of three float values as red, green and blue.
@@ -24,10 +44,19 @@ Every color palette offers 100 categories
 * `discrete50()` -> [(Float, Float, Float)] ... subset of 50 colors
 * `discrete100() -> [(Float, Float, Float)]` ... subset of 100 colors
 
+# Code generator
+
+Just run `swift run' in the package directory, which will (re-)create the color palette swift files in folder `Sources/ScientificColorMaps`
+
 # Note:
 
 API may change
 
 # License
 
+This package is licensed under the MIT License.
 The color data has its own license. See in the respective file +LICENCE.pdf
+
+## Acknowledgments
+
+* This package was generated using data from Version 8.0.1 of the Scientific Colour Maps, available at <https://www.fabiocrameri.ch/colourmaps/>.

@@ -23,8 +23,22 @@ import ScientificColorMaps
 let colorMap = ScientificColorMaps.batlow
 ```
 
-## Color Representation
-Each color is represented as tuple of three float values as red, green and blue. Each Float is in the range 0 to 1
+## Color Representation - ScientificColor
+
+Each color is stored as platform agnostic ScientificColor as red, green, blue Floats. Each Float is in the range 0 to 1. The raw values can be obtained by accessing the instances' `red`, `green` and `blue` constant. ScientificColor is Equatable and Hashable.
+
+This type provides conversions to `UIColor`, `NSColor`, `SKColor`, `simd_float3` if the respective type is available. Either by a generic:
+```swift
+    public func into<T>() -> T
+```
+Or direct conversions:
+* `asTuple() -> (red: Float, green: Float, blue: Float)`
+* `asArray() -> [Float]`
+* `asCGColor() -> CGColor`
+* `asNSColor() -> NSColor`
+* `asUIColor() -> UIColor`
+* `asSimd() -> simd_float3`
+
 
 ## List of Color palettes
 Every color palette offers 256 colors
@@ -42,19 +56,6 @@ All color palettes, which offer in addition 100 categories
 * `discrete25() -> [ScientificColor]` ... subset of 25 colors
 * `discrete50() -> [ScientificColor)]` ... subset of 50 colors
 * `discrete100() -> [ScientificColor]` ... subset of 100 colors
-
-## class ScientificColor
-This provides conversions to `UIColor`, `NSColor`, `SKColor`, `simd_float3` if the respective type is available. Either by a generic:
-```swift
-    public func into<T>() -> T
-```
-Or direct conversions:
-* `asTuple() -> (red: Float, green: Float, blue: Float)`
-* `asArray() -> [Float]`
-* `asCGColor() -> CGColor`
-* `asNSColor() -> NSColor`
-* `asUIColor() -> UIColor`
-* `asSimd() -> simd_float3`
 
 # Code generator
 

@@ -26,7 +26,7 @@ let colorMap = ScientificColorMaps.batlow
 
 ## Color Representation - ScientificColor
 
-Each color is stored as platform agnostic ScientificColor as red, green, blue and represented as Float. Each Float is in the range 0 to 1. The raw values can be obtained by accessing the instances' constants: `red`, `green` and `blue`. ScientificColor is Equatable and Hashable.
+Each color is stored as platform agnostic `ScientificColor`. Internally the color components are stored as red, green, blue and represented as Float. Each Float is in the range 0 to 1. The raw values can be obtained by accessing the instances' constants: `red`, `green` and `blue`. ScientificColor is Sendable, Equatable and Hashable.
 
 This type provides conversions to `UIColor`, `NSColor`, `SKColor`, `simd_float3` if the respective type is available. Either by a generic:
 ```swift

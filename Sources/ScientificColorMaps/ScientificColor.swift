@@ -15,6 +15,7 @@ import Foundation
 //          simd_float3 - could be used, but not well supported under Linux
 //
 public final class ScientificColor: Sendable, Equatable, Hashable {
+    let index: Int
     let red: Float
     let green: Float
     let blue: Float
@@ -28,12 +29,8 @@ public final class ScientificColor: Sendable, Equatable, Hashable {
         blue.hash(into: &hasher)
     }
 
-    init(_ red: Float, _ green: Float, _ blue: Float) {
-        self.red = red
-        self.green = green
-        self.blue = blue
-    }
-    init(red: Float, green: Float, blue: Float) {
+    init(_ index: Int, _ red: Float, _ green: Float, _ blue: Float) {
+        self.index = index
         self.red = red
         self.green = green
         self.blue = blue

@@ -161,8 +161,9 @@ for (map, cmPair) in maps {
 
     // Add the raw colormap data
     swiftCode.append("   private static let \(map)_raw: [ScientificColor] = [")
-    for rgb in cmPair.0 {
-        swiftCode.append(String(format: "      ScientificColor(%.6f, %.6f, %.6f),", rgb[0], rgb[1], rgb[2]))
+    for (i,rgb) in cmPair.0.enumerated() {
+        swiftCode.append(String(format: "      ScientificColor(%d, %.6f, %.6f, %.6f),",
+                                i, rgb[0], rgb[1], rgb[2]))
     }
     swiftCode.append("   ]")
 
@@ -175,8 +176,9 @@ for (map, cmPair) in maps {
 
         // Add the categorical colormap data
         swiftCode.append("   private static let \(map)_category_raw: [ScientificColor] = [")
-        for rgb in cm {
-            swiftCode.append(String(format: "      ScientificColor(%.6f, %.6f, %.6f),", rgb[0], rgb[1], rgb[2]))
+        for (i, rgb) in cm.enumerated() {
+            swiftCode.append(String(format: "      ScientificColor(%d, %.6f, %.6f, %.6f),",
+                                    i, rgb[0], rgb[1], rgb[2]))
         }
         swiftCode.append("   ]")
 

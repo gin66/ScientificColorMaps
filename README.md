@@ -40,6 +40,8 @@ Or direct conversions:
 * `asUIColor() -> UIColor`
 * `asSimd() -> simd_float3`
 
+Every ScientificColor comes with an index value, which is not included in hash or equation test.
+It provides the index of the related color into the respective palette or categorizedPalette.
 
 ## List of Color palettes
 Every color palette offers 256 colors
@@ -57,6 +59,7 @@ All color palettes, which offer in addition 100 categories
 * `discrete25() -> [ScientificColor]` ... subset of 25 colors
 * `discrete50() -> [ScientificColor)]` ... subset of 50 colors
 * `discrete100() -> [ScientificColor]` ... subset of 100 colors
+* `mapToColor(value: Float, minValue: Float = 0, maxValue: Float = 1) -> ScientificColor`
 
 # Code generator
 

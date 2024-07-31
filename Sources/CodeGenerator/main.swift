@@ -46,6 +46,12 @@ let colormaps: [String] = [
     "vikO"
 ]
 
+struct RGB: Hashable {
+    let red: Float
+    let green: Float
+    let blue: Float
+}
+
 /**
  Reads a colormap from a file.
 
@@ -55,7 +61,7 @@ let colormaps: [String] = [
 
  - Returns: The colormap as a 2D array of floats, or nil if the file could not be read.
  */
-func readMap(map: String, categorical: Bool) -> [[Float]]? {
+func readMap(map: String, categorical: Bool) -> [RGB]? {
     // Get the current directory
     let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 
@@ -84,7 +90,7 @@ func readMap(map: String, categorical: Bool) -> [[Float]]? {
         let lines = fileData.split(separator: "\n")
 
         // Initialize the colormap array
-        var colormap: [[Float]] = []
+        var colormap: [RGB] = []
 
         // Iterate over each line in the file
         for line in lines {
@@ -92,7 +98,7 @@ func readMap(map: String, categorical: Bool) -> [[Float]]? {
             let numbers = line.components(separatedBy: " ").compactMap { Float($0) }
 
             // Add the numbers to the colormap array
-            colormap.append(numbers)
+            colormap.append(RGB(red: numbers[0], green: numbers[1], blue: numbers[2]))
 
             // Assert that each line has exactly 3 numbers
             assert(numbers.count == 3)
@@ -111,7 +117,7 @@ func readMap(map: String, categorical: Bool) -> [[Float]]? {
 }
 
 // Dictionary to store the colormaps
-var maps: [String: ([[Float]], [[Float]]?)] = [:]
+var maps: [String: ([RGB], [RGB]?)] = [:]
 
 // Iterate over each colormap and read its data
 for map in colormaps {
@@ -160,10 +166,12 @@ for (map, cmPair) in maps {
     swiftCode.append(fileHeader)
 
     // Add the raw colormap data
+    var colorDict: [RGB : Int] = [:]
     swiftCode.append("   private static let \(map)_raw: [ScientificColor] = [")
     for (i,rgb) in cmPair.0.enumerated() {
-        swiftCode.append(String(format: "      ScientificColor(%d, %.6f, %.6f, %.6f),",
-                                i, rgb[0], rgb[1], rgb[2]))
+        colorDict[rgb] = i
+        swiftCode.append(String(format: "      ScientificColor(%d, nil, %.6f, %.6f, %.6f),",
+                                i, rgb.red, rgb.green, rgb.blue))
     }
     swiftCode.append("   ]")
 
@@ -177,8 +185,9 @@ for (map, cmPair) in maps {
         // Add the categorical colormap data
         swiftCode.append("   private static let \(map)_category_raw: [ScientificColor] = [")
         for (i, rgb) in cm.enumerated() {
-            swiftCode.append(String(format: "      ScientificColor(%d, %.6f, %.6f, %.6f),",
-                                    i, rgb[0], rgb[1], rgb[2]))
+            let colIndex = colorDict[rgb]! // should not happen, if category is well defined
+            swiftCode.append(String(format: "      ScientificColor(%d, %d, %.6f, %.6f, %.6f),",
+                                    colIndex, i,  rgb.red, rgb.green, rgb.blue))
         }
         swiftCode.append("   ]")
 

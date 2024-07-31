@@ -16,6 +16,7 @@ import Foundation
 //
 public final class ScientificColor: Sendable, Equatable, Hashable, Codable {
     public let index: Int
+    public let categoryIndex: Int?
     public let red: Float
     public let green: Float
     public let blue: Float
@@ -29,8 +30,9 @@ public final class ScientificColor: Sendable, Equatable, Hashable, Codable {
         blue.hash(into: &hasher)
     }
 
-    init(_ index: Int, _ red: Float, _ green: Float, _ blue: Float) {
+    init(_ index: Int, _ categoryIndex: Int? = nil, _ red: Float, _ green: Float, _ blue: Float) {
         self.index = index
+        self.categoryIndex = categoryIndex
         self.red = red
         self.green = green
         self.blue = blue

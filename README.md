@@ -42,7 +42,7 @@ Or direct conversions:
 * `asSimd() -> simd_float3`
 
 Every ScientificColor comes with an index value, which is not included in hash or equation test.
-It provides the index of the related color into the respective palette or categorizedPalette.
+It provides the `index: Int` (0-255) of the related color into the respective palette. If the categorized palette is used, then `categoryIndex: Int?` is not nil and gives the color's index of the category (0-99).
 
 ## List of Color palettes
 Every color palette offers 256 colors

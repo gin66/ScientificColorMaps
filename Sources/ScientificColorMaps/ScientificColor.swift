@@ -14,7 +14,7 @@ import Foundation
 //          CGColor
 //          simd_float3 - could be used, but not well supported under Linux
 //
-public final class ScientificColor: Sendable, Equatable, Hashable {
+public final class ScientificColor: Sendable, Equatable, Hashable, Codable {
     public let index: Int
     public let red: Float
     public let green: Float

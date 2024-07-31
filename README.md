@@ -12,6 +12,7 @@ This package provides a set of pre-defined color maps that can be used to visual
 * Categorized palettes for easy selection and use.
 * Support for discrete color sampling (10, 25, 50, and 100 samples).
 * Easy to use and integrate into your Swift project.
+* Colors are easily convertible to `CGColor`, `NSColor`, `UIColor`, `SKColor`, `simd_float3`
 
 ## Usage
 

@@ -36,12 +36,25 @@ All color palettes, which offer in addition 100 categories
 
 ## API of ScientificColorMaps
 * `name` ... String
-* `rgb_data` ... array of 256 [(Float, Float, Float)]
-* `categorical` ... array of 100 [(Float, Float, Float)] if defined, otherwise nil
-* `discrete10() -> [(Float, Float, Float)]` ... subset of 10 colors
-* `discrete25() -> [(Float, Float, Float)]` ... subset of 25 colors
-* `discrete50()` -> [(Float, Float, Float)] ... subset of 50 colors
-* `discrete100() -> [(Float, Float, Float)]` ... subset of 100 colors
+* `rgb_data` ... array of 256 `[ScientificColor]`
+* `categorical` ... array of 100 `[ScientificColor]` if defined, otherwise nil
+* `discrete10() -> [ScientificColor]` ... subset of 10 colors
+* `discrete25() -> [ScientificColor]` ... subset of 25 colors
+* `discrete50() -> [ScientificColor)]` ... subset of 50 colors
+* `discrete100() -> [ScientificColor]` ... subset of 100 colors
+
+## class ScientificColor
+This provides conversions to `UIColor`, `NSColor`, `SKColor`, `simd_float3` if the respective type is available. Either by a generic:
+```swift
+    public func into<T>() -> T
+```
+Or direct conversions:
+* `asTuple() -> (red: Float, green: Float, blue: Float)`
+* `asArray() -> [Float]`
+* `asCGColor() -> CGColor`
+* `asNSColor() -> NSColor`
+* `asUIColor() -> UIColor`
+* `asSimd() -> simd_float3`
 
 # Code generator
 

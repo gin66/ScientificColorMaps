@@ -160,9 +160,9 @@ for (map, cmPair) in maps {
     swiftCode.append(fileHeader)
 
     // Add the raw colormap data
-    swiftCode.append("   private static let \(map)_raw: [(Float,Float,Float)] = [")
+    swiftCode.append("   private static let \(map)_raw: [ScientificColor] = [")
     for rgb in cmPair.0 {
-        swiftCode.append(String(format: "      (%.6f, %.6f, %.6f),", rgb[0], rgb[1], rgb[2]))
+        swiftCode.append(String(format: "      ScientificColor(%.6f, %.6f, %.6f),", rgb[0], rgb[1], rgb[2]))
     }
     swiftCode.append("   ]")
 
@@ -174,9 +174,9 @@ for (map, cmPair) in maps {
         palettesWithCategory.append(map)
 
         // Add the categorical colormap data
-        swiftCode.append("   private static let \(map)_category_raw: [(Float,Float,Float)] = [")
+        swiftCode.append("   private static let \(map)_category_raw: [ScientificColor] = [")
         for rgb in cm {
-            swiftCode.append(String(format: "      (%.6f, %.6f, %.6f),", rgb[0], rgb[1], rgb[2]))
+            swiftCode.append(String(format: "      ScientificColor(%.6f, %.6f, %.6f),", rgb[0], rgb[1], rgb[2]))
         }
         swiftCode.append("   ]")
 

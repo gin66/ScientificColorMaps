@@ -2,11 +2,26 @@ import XCTest
 @testable import ScientificColorMaps
 
 final class ScientificColorMapsTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
+    func testExistence() throws {
+        let batlow = ScientificColorMaps.batlow
 
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+        XCTAssertEqual(batlow.rgb_data.count, 256)
+    }
+    func testIterator() throws {
+        let colormaps = ScientificColorMaps.palettes()
+
+        for scm in colormaps {
+            XCTAssertEqual(scm.rgb_data.count, 256)
+        }
+    }
+    func testIteratorCategorized() throws {
+        let colormaps = ScientificColorMaps.categorizedPalettes()
+
+        for scm in colormaps {
+            XCTAssertNotNil(scm.categorical)
+            if let categorical = scm.categorical {
+                XCTAssertEqual(categorical.count, 100)
+            }
+        }
     }
 }

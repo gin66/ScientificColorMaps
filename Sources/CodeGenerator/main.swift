@@ -141,6 +141,17 @@ let fileHeader = """
 var palettes: [String] = []
 var palettesWithCategory: [String] = []
 
+// Define the codeDirectory
+let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+let codeDirectoryUrl = currentDirectory
+        .appendingPathComponent("Sources")
+        .appendingPathComponent("ScientificColorMaps")
+        .appendingPathComponent("ColorMaps")
+
+// Create the code directory, if it does not exist.
+// Ignore any error
+try? FileManager.default.createDirectory(at: codeDirectoryUrl, withIntermediateDirectories: false)
+
 // Iterate over each colormap and generate Swift code for it
 for (map, cmPair) in maps {
     var swiftCode: [String] = []
@@ -184,11 +195,7 @@ for (map, cmPair) in maps {
     let code = swiftCode.joined(separator: "\n")
 
     // Write the code to a file
-    let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-    let fileUrl = currentDirectory
-            .appendingPathComponent("Sources")
-            .appendingPathComponent("ScientificColorMaps")
-            .appendingPathComponent("\(map).swift")
+    let fileUrl = codeDirectoryUrl.appendingPathComponent("\(map).swift")
     try code.write(to: fileUrl, atomically: true, encoding: .utf8)
 }
 
@@ -218,9 +225,5 @@ swiftCode.append("}")
 let code = swiftCode.joined(separator: "\n")
 
 // Write the code to a file
-let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-let fileUrl = currentDirectory
-        .appendingPathComponent("Sources")
-        .appendingPathComponent("ScientificColorMaps")
-        .appendingPathComponent("Palettes.swift")
+let fileUrl = codeDirectoryUrl.appendingPathComponent("Palettes.swift")
 try code.write(to: fileUrl, atomically: true, encoding: .utf8)

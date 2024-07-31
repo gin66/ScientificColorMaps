@@ -15,10 +15,10 @@ import Foundation
 //          simd_float3 - could be used, but not well supported under Linux
 //
 public final class ScientificColor: Sendable, Equatable, Hashable {
-    let index: Int
-    let red: Float
-    let green: Float
-    let blue: Float
+    public let index: Int
+    public let red: Float
+    public let green: Float
+    public let blue: Float
 
     public static func == (lhs: ScientificColor, rhs: ScientificColor) -> Bool {
         lhs.red == rhs.red && lhs.green == rhs.green && lhs.blue == rhs.blue

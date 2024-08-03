@@ -15,7 +15,7 @@ public extension ScientificColor {
         UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
     func into() -> UIColor {
-        asNSColor()
+        asUIColor()
     }
 }
 #endif

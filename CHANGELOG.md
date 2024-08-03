@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 0.2.1:
+- Fix compile error for iOS applications: asNSColor() not defined
+
 ## Version 0.2.0:
 - Require iOS version 13 for CGColor
 - Generated files end with newline

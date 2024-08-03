@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
     name: "ScientificColorMaps",
     platforms: [
-        .macOS(.v13)
+        .macOS(.v13),
+        .iOS(.v13)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.

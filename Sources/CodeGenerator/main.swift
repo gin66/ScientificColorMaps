@@ -202,6 +202,9 @@ for (map, cmPair) in maps {
     // Close the extension
     swiftCode.append("}")
 
+    // ensure file does not end with }
+    swiftCode.append("")
+
     // Join the Swift code into a single string
     let code = swiftCode.joined(separator: "\n")
 
@@ -232,6 +235,8 @@ swiftCode.append("      ]")
 swiftCode.append("   }")
 swiftCode.append("}")
 
+// ensure file does not end with }
+swiftCode.append("")
 // Join the Swift code into a single string
 let code = swiftCode.joined(separator: "\n")
 

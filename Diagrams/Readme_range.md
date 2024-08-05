@@ -1,6 +1,6 @@
 
-|average|map name|normal|protanomaly|deuteranomaly|tritanomaly|
-|-------|--------|---|---|---|---|
+|min average|map name|normal|protanomaly|deuteranomaly|tritanomaly|
+|-----------|--------|---|---|---|---|
 0.6062|vik_range|![vik_range_normal](range/vik_range_normal.png)|![vik_range_protanomaly](range/vik_range_protanomaly.png)|![vik_range_deuteranomaly](range/vik_range_deuteranomaly.png)|![vik_range_tritanomaly](range/vik_range_tritanomaly.png)|
 0.5911|lisbon_range|![lisbon_range_normal](range/lisbon_range_normal.png)|![lisbon_range_protanomaly](range/lisbon_range_protanomaly.png)|![lisbon_range_deuteranomaly](range/lisbon_range_deuteranomaly.png)|![lisbon_range_tritanomaly](range/lisbon_range_tritanomaly.png)|
 0.5909|oslo_range|![oslo_range_normal](range/oslo_range_normal.png)|![oslo_range_protanomaly](range/oslo_range_protanomaly.png)|![oslo_range_deuteranomaly](range/oslo_range_deuteranomaly.png)|![oslo_range_tritanomaly](range/oslo_range_tritanomaly.png)|

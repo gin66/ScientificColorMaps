@@ -1,6 +1,6 @@
 
-|average|map name|normal|protanomaly|deuteranomaly|tritanomaly|
-|-------|--------|---|---|---|---|
+|min average|map name|normal|protanomaly|deuteranomaly|tritanomaly|
+|-----------|--------|---|---|---|---|
 0.7014|oslo_categorical|![oslo_categorical_normal](categorical/oslo_categorical_normal.png)|![oslo_categorical_protanomaly](categorical/oslo_categorical_protanomaly.png)|![oslo_categorical_deuteranomaly](categorical/oslo_categorical_deuteranomaly.png)|![oslo_categorical_tritanomaly](categorical/oslo_categorical_tritanomaly.png)|
 0.6307|turku_categorical|![turku_categorical_normal](categorical/turku_categorical_normal.png)|![turku_categorical_protanomaly](categorical/turku_categorical_protanomaly.png)|![turku_categorical_deuteranomaly](categorical/turku_categorical_deuteranomaly.png)|![turku_categorical_tritanomaly](categorical/turku_categorical_tritanomaly.png)|
 0.6257|devon_categorical|![devon_categorical_normal](categorical/devon_categorical_normal.png)|![devon_categorical_protanomaly](categorical/devon_categorical_protanomaly.png)|![devon_categorical_deuteranomaly](categorical/devon_categorical_deuteranomaly.png)|![devon_categorical_tritanomaly](categorical/devon_categorical_tritanomaly.png)|

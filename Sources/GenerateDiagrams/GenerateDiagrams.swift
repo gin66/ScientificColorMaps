@@ -55,7 +55,7 @@ struct GenerateDiagramsMain {
             (ColorDeficiency.tritanomaly(severity: 1), "tritanomaly"),
         ]
 
-        let referenceMap = ScientificColorMaps.batlow
+        let referenceMap = ScientificColorMaps.vik
         for colorMap in ScientificColorMaps.palettes() {
             var mapTypes: [(String, Int, [ScientificColor])] = [("range", 1, colorMap.discrete50())]
             if let colors = colorMap.categorical {
@@ -147,7 +147,7 @@ struct GenerateDiagramsMain {
             var collectedData: [(Float,String,[Float])] = []
             for colorMap in ScientificColorMaps.palettes() {
                 var avgList: [Float] = []
-                for (cds, name) in cdsList {
+                for (_, name) in cdsList {
                     let description = "\(colorMap.name)_\(type)_\(name)"
                     if let avg = selectedData[description] {
                         avgList.append(avg)
@@ -170,7 +170,6 @@ struct GenerateDiagramsMain {
             for entry in collectedData {
                 let avgDiff = String(format: "%.4f", entry.0)
                 let name = entry.1
-                let url = "\(type)/\(entry.1).png"
                 let imageList = cdsList.map { "![\(name)_\($0.1)](\(type)/\(name)_\($0.1).png)" }.joined(separator: "|")
                 markdownLines.append("\(avgDiff)|\(name)|\(imageList)|")
             }

@@ -1,4 +1,6 @@
+
 |minimum|maximum|average|map name|delta image|
+|-------|-------|-------|--------|-----------|
 |0.0405|1.4119|0.6884|vik_range_tritanomaly|![vik_range_tritanomaly](range/vik_range_tritanomaly.png)|
 |0.0356|1.3736|0.6641|vik_range_normal|![vik_range_normal](range/vik_range_normal.png)|
 |0.0401|1.1924|0.6188|roma_range_tritanomaly|![roma_range_tritanomaly](range/roma_range_tritanomaly.png)|

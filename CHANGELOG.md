@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.2.3:
+- Add missing public to mapToColor()
+- Add new tool to generate difference Images
+
+## Version 0.2.2:
+- Add enum ColorDeficiency to allow mapping of rgb values to simulated ones.
+
 ## Version 0.2.1:
 - Fix compile error for iOS applications: asNSColor() not defined
 

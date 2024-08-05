@@ -64,7 +64,7 @@ All color palettes, which offer in addition 100 categories
 
 # Code generator
 
-Just run `swift run` in the package directory, which will (re-)create the color palette swift files in folder `Sources/ScientificColorMaps/ColorMaps`
+Just run `swift run CodeGenerator` in the package directory, which will (re-)create the color palette swift files in folder `Sources/ScientificColorMaps/ColorMaps`
 
 # Color Deficiency Simulation
 

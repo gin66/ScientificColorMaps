@@ -76,7 +76,7 @@ public final class ScientificColorMaps: Sendable, Hashable, Identifiable {
         }
     }
 
-    func mapToColor(value: Float, minValue: Float = 0, maxValue: Float = 1) -> ScientificColor {
+    public func mapToColor(value: Float, minValue: Float = 0, maxValue: Float = 1) -> ScientificColor {
         let i = Int((value - minValue) / (maxValue - minValue) * Float(rgb_data.count))
         let index = min(max(i, 0), 255)
         return rgb_data[index]

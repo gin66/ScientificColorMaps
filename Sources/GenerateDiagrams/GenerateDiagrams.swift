@@ -44,25 +44,27 @@ func byteArrayRGBAU8ToCGImage(
 @main
 struct GenerateDiagramsMain {
     static func main() {
-        var data: [(Float, Float, Float, String, String)] = []
+        var data: [String: Float] = [:]
         let currentDirectory = URL(
             fileURLWithPath: FileManager.default.currentDirectoryPath)
+
+        let cdsList: [(ColorDeficiency, String)] = [
+            (ColorDeficiency.protanomaly(severity: 0), "normal"),
+            (ColorDeficiency.protanomaly(severity: 1), "protanomaly"),
+            (ColorDeficiency.deuteranomaly(severity: 1), "deuteranomaly"),
+            (ColorDeficiency.tritanomaly(severity: 1), "tritanomaly"),
+        ]
 
         let referenceMap = ScientificColorMaps.batlow
         for colorMap in ScientificColorMaps.palettes() {
             var mapTypes: [(String, Int, [ScientificColor])] = [("range", 1, colorMap.discrete50())]
             if let colors = colorMap.categorical {
-                let first10: [ScientificColor] = colors[0..<10].map{$0}
+                let first10: [ScientificColor] = colors[0..<10].map { $0 }
                 mapTypes.append(("categorical", 5, first10))
             }
 
             for (type, scale, colors) in mapTypes {
-                for (cds, name) in [
-                    (ColorDeficiency.protanomaly(severity: 0), "normal"),
-                    (ColorDeficiency.protanomaly(severity: 1), "protanomaly"),
-                    (ColorDeficiency.deuteranomaly(severity: 1), "deuteranomaly"),
-                    (ColorDeficiency.tritanomaly(severity: 1), "tritanomaly"),
-                ] {
+                for (cds, name) in cdsList {
                     let description = "\(colorMap.name)_\(type)_\(name)"
                     var differenceImage: [Float] = []
                     var avgDifference: Float = 0
@@ -85,8 +87,6 @@ struct GenerateDiagramsMain {
                         }
                     }
 
-                    let minDifference = differenceImage.filter { $0 > 0 }.min()!
-                    let maxDifference = differenceImage.max()!
                     avgDifference = avgDifference / Float(pixelCount)
 
                     var u8Image = differenceImage.flatMap {
@@ -95,7 +95,7 @@ struct GenerateDiagramsMain {
                             let col = referenceMap.mapToColor(
                                 value: difference, maxValue: sqrt(3)
                             )
-                                .asSimd()
+                            .asSimd()
                             return [
                                 UInt8(col.x * 255), UInt8(col.y * 255), UInt8(col.z * 255), 255,
                             ]
@@ -104,7 +104,7 @@ struct GenerateDiagramsMain {
                     }
 
                     let destinationURL =
-                    currentDirectory
+                        currentDirectory
                         .appendingPathComponent("Diagrams")
                         .appendingPathComponent(type)
                         .appendingPathComponent("\(description).png")
@@ -121,11 +121,10 @@ struct GenerateDiagramsMain {
                         return CGImageDestinationFinalize(destination)
                     }
 
-                    let minMax = String(format: "min/max=%.4f/%.4f", minDifference, maxDifference)
                     let avg = String(format: "avg=%.4f", avgDifference)
-                    print("difference \(type) \(avg), \(minMax): \(description)")
+                    print("difference \(type) \(avg): \(description)")
 
-                    data.append((minDifference, maxDifference, avgDifference, type, description))
+                    data[description] = avgDifference
                 }
             }
         }
@@ -134,23 +133,48 @@ struct GenerateDiagramsMain {
         for type in ["categorical", "range"] {
             var markdownLines: [String] = []
             let destinationURL =
-            currentDirectory
+                currentDirectory
                 .appendingPathComponent("Diagrams")
                 .appendingPathComponent("Readme_\(type).md")
 
-            markdownLines.append("") // add blank line before table
-            markdownLines.append("|minimum|maximum|average|map name|delta image|")
-            markdownLines.append("|-------|-------|-------|--------|-----------|")
-            data.sort{ $0.2 > $1.2}
-            for entry in data.filter({$0.3 == type}) {
-                let minDiff = String(format: "%.4f", entry.0)
-                let maxDiff = String(format: "%.4f", entry.1)
-                let avgDiff = String(format: "%.4f", entry.2)
-                let name = entry.4
-                let url = "\(type)/\(entry.4).png"
-                markdownLines.append("|\(minDiff)|\(maxDiff)|\(avgDiff)|\(name)|![\(name)](\(url))|")
+            var selectedData: [String:Float] = [:]
+            for (name, value) in data {
+                if name.contains(type) {
+                    selectedData[name] = value
+                }
             }
-            markdownLines.append("") // ensure end of line
+
+            var collectedData: [(Float,String,[Float])] = []
+            for colorMap in ScientificColorMaps.palettes() {
+                var avgList: [Float] = []
+                for (cds, name) in cdsList {
+                    let description = "\(colorMap.name)_\(type)_\(name)"
+                    if let avg = selectedData[description] {
+                        avgList.append(avg)
+                    }
+                }
+                if avgList.count == cdsList.count {
+                    let minAvg = avgList.min()!
+                    collectedData.append((minAvg, "\(colorMap.name)_\(type)", avgList))
+                }
+            }
+
+            markdownLines.append("")  // add blank line before table
+
+            let headers = cdsList.map { $0.1 }.joined(separator: "|")
+            let headerlines = cdsList.map { _ in "---" }.joined(separator: "|")
+            markdownLines.append("|min average|map name|\(headers)|")
+            markdownLines.append("|-----------|--------|\(headerlines)|")
+
+            collectedData.sort { $0.0 > $1.0 }
+            for entry in collectedData {
+                let avgDiff = String(format: "%.4f", entry.0)
+                let name = entry.1
+                let url = "\(type)/\(entry.1).png"
+                let imageList = cdsList.map { "![\(name)_\($0.1)](\(type)/\(name)_\($0.1).png)" }.joined(separator: "|")
+                markdownLines.append("\(avgDiff)|\(name)|\(imageList)|")
+            }
+            markdownLines.append("")  // ensure end of line
             let s = markdownLines.joined(separator: "\n")
             try! s.write(to: destinationURL, atomically: true, encoding: .utf8)
         }

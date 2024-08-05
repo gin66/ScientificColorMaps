@@ -71,7 +71,11 @@ Just run `swift run` in the package directory, which will (re-)create the color 
 The color deficiency simulation is based on:
 [A Physiologically-based Model for Simulation of Color Vision Deficiency](https://www.inf.ufrgs.br/%7Eoliveira/pubs_files/CVD_Simulation/CVD_Simulation.html)
 
-The functionality is only available, if simd can be imported.
+The functionality is only available, if simd can be imported. The enum `ColorDeficiency` will be provided,
+which offers the different anomalies: protanomaly, deuteranomaly and tritanomaly with possibility to
+adjust the severity from 0 - none to 1 - full.
+
+The enum provides the function `mapRGB(rgb: simd_float3) -> simd_float3` to map the actual rgb value to a simulated rgb value, which is from view under color deficiency.
 
 # Note:
 

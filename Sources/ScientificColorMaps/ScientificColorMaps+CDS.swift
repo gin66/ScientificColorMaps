@@ -11,10 +11,49 @@ import Foundation
 
     import simd
 
-    extension ScientificColorMaps {
-        static let cdsSimulationMatrices: [(simd_float3x3, simd_float3x3, simd_float3x3)] = [
+    public enum ColorDeficiency {
+        case protanomaly(severity: Float)
+        case deuteranomaly(severity: Float)
+        case tritanomaly(severity: Float)
+
+        func getMatrix() -> simd_float3x3 {
+            let index: Int
+            let severity: Float
+            switch self {
+                case .protanomaly(let v):
+                    index = 0
+                    severity = v
+                case .deuteranomaly(let v):
+                    index = 1
+                    severity = v
+                case .tritanomaly(let v):
+                    index = 2
+                    severity = v
+            }
+            let clamped = max(min(severity * 10, 10.0), 0.0)
+            let matrixIndex = Int(clamped)
+            let decimal = clamped - Float(matrixIndex)
+
+            if matrixIndex < 10 {
+                let m_low = ColorDeficiency.simulationMatrices[matrixIndex][index]
+                let m_high = ColorDeficiency.simulationMatrices[matrixIndex + 1][index]
+                return m_low * (1.0 - decimal) + m_high * decimal
+            }
+            else {
+                return ColorDeficiency.simulationMatrices[10][index]
+            }
+        }
+
+        public func mapRGB(rgb: simd_float3) -> simd_float3 {
+            let matrix = getMatrix()
+            let result = matrix * rgb
+            let clamped: simd_float3 = min(max(result, 0), 1.0)
+            return clamped
+        }
+
+        static let simulationMatrices: [[simd_float3x3]] = [
             //        0.0
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 1.000000, y: 0.000000, z: -0.000000),
                     simd_float3(x: 0.000000, y: 1.000000, z: 0.000000),
@@ -30,9 +69,9 @@ import Foundation
                     simd_float3(x: 0.000000, y: 1.000000, z: 0.000000),
                     simd_float3(x: -0.000000, y: -0.000000, z: 1.000000),
                 ])
-            ),
+            ],
             //        0.1
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.856167, y: 0.182038, z: -0.038205),
                     simd_float3(x: 0.029342, y: 0.955115, z: 0.015544),
@@ -48,9 +87,9 @@ import Foundation
                     simd_float3(x: 0.021191, y: 0.964503, z: 0.014306),
                     simd_float3(x: 0.008437, y: 0.054813, z: 0.936750),
                 ])
-            ),
+            ],
             //        0.2
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.734766, y: 0.334872, z: -0.069637),
                     simd_float3(x: 0.051840, y: 0.919198, z: 0.028963),
@@ -66,9 +105,9 @@ import Foundation
                     simd_float3(x: 0.029997, y: 0.945400, z: 0.024603),
                     simd_float3(x: 0.013027, y: 0.104707, z: 0.882266),
                 ])
-            ),
+            ],
             //        0.3
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.630323, y: 0.465641, z: -0.095964),
                     simd_float3(x: 0.069181, y: 0.890046, z: 0.040773),
@@ -84,9 +123,9 @@ import Foundation
                     simd_float3(x: 0.026856, y: 0.941251, z: 0.031893),
                     simd_float3(x: 0.013410, y: 0.148296, z: 0.838294),
                 ])
-            ),
+            ],
             //        0.4
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.539009, y: 0.579343, z: -0.118352),
                     simd_float3(x: 0.082546, y: 0.866121, z: 0.051332),
@@ -102,9 +141,9 @@ import Foundation
                     simd_float3(x: 0.014364, y: 0.946792, z: 0.038844),
                     simd_float3(x: 0.010853, y: 0.193991, z: 0.795156),
                 ])
-            ),
+            ],
             //        0.5
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.458064, y: 0.679578, z: -0.137642),
                     simd_float3(x: 0.092785, y: 0.846313, z: 0.060902),
@@ -120,9 +159,9 @@ import Foundation
                     simd_float3(x: -0.006113, y: 0.958479, z: 0.047634),
                     simd_float3(x: 0.006379, y: 0.248708, z: 0.744913),
                 ])
-            ),
+            ],
             //        0.6
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.385450, y: 0.769005, z: -0.154455),
                     simd_float3(x: 0.100526, y: 0.829802, z: 0.069673),
@@ -138,9 +177,9 @@ import Foundation
                     simd_float3(x: -0.032137, y: 0.971635, z: 0.060503),
                     simd_float3(x: 0.001336, y: 0.317922, z: 0.680742),
                 ])
-            ),
+            ],
             //        0.7
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.319627, y: 0.849633, z: -0.169261),
                     simd_float3(x: 0.106241, y: 0.815969, z: 0.077790),
@@ -156,9 +195,9 @@ import Foundation
                     simd_float3(x: -0.058496, y: 0.979410, z: 0.079086),
                     simd_float3(x: -0.002346, y: 0.403492, z: 0.598854),
                 ])
-            ),
+            ],
             //        0.8
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.259411, y: 0.923008, z: -0.182420),
                     simd_float3(x: 0.110296, y: 0.804340, z: 0.085364),
@@ -174,9 +213,9 @@ import Foundation
                     simd_float3(x: -0.078003, y: 0.975409, z: 0.102594),
                     simd_float3(x: -0.003316, y: 0.501214, z: 0.502102),
                 ])
-            ),
+            ],
             //        0.9
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.203876, y: 0.990338, z: -0.194214),
                     simd_float3(x: 0.112975, y: 0.794542, z: 0.092483),
@@ -192,9 +231,9 @@ import Foundation
                     simd_float3(x: -0.084748, y: 0.957674, z: 0.127074),
                     simd_float3(x: -0.000989, y: 0.601151, z: 0.399838),
                 ])
-            ),
+            ],
             //         1.0
-            (
+            [
                 simd_float3x3(rows: [
                     simd_float3(x: 0.152286, y: 1.052583, z: -0.204868),
                     simd_float3(x: 0.114503, y: 0.786281, z: 0.099216),
@@ -210,7 +249,7 @@ import Foundation
                     simd_float3(x: -0.078411, y: 0.930809, z: 0.147602),
                     simd_float3(x: 0.004733, y: 0.691367, z: 0.303900),
                 ])
-            ),
+            ]
         ]
     }
 

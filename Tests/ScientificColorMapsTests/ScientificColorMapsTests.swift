@@ -35,3 +35,4 @@ final class ScientificColorMapsTests: XCTestCase {
         XCTAssertEqual(batlow.mapToColor(value: 42, minValue: -1, maxValue: 42), batlow.rgb_data.last)
     }
 }
+

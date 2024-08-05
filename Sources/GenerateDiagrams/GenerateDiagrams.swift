@@ -138,6 +138,7 @@ struct GenerateDiagramsMain {
                 .appendingPathComponent("Diagrams")
                 .appendingPathComponent("Readme_\(type).md")
 
+            markdownLines.append("") // add blank line before table
             markdownLines.append("|minimum|maximum|average|map name|delta image|")
             markdownLines.append("|-------|-------|-------|--------|-----------|")
             data.sort{ $0.2 > $1.2}
@@ -149,6 +150,7 @@ struct GenerateDiagramsMain {
                 let url = "\(type)/\(entry.4).png"
                 markdownLines.append("|\(minDiff)|\(maxDiff)|\(avgDiff)|\(name)|![\(name)](\(url))|")
             }
+            markdownLines.append("") // ensure end of line
             let s = markdownLines.joined(separator: "\n")
             try! s.write(to: destinationURL, atomically: true, encoding: .utf8)
         }

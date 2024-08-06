@@ -57,64 +57,131 @@ struct GenerateDiagramsMain {
 
         let referenceMap = ScientificColorMaps.vik
         for colorMap in ScientificColorMaps.palettes() {
-            var mapTypes: [(String, Int, [ScientificColor])] = [("range", 1, colorMap.discrete50())]
+            var mapTypes: [(String, Int, Int, [ScientificColor])] = [
+                ("range", 1, 9, colorMap.discrete50())
+            ]
             if let colors = colorMap.categorical {
                 let first10: [ScientificColor] = colors[0..<10].map { $0 }
-                mapTypes.append(("categorical", 5, first10))
+                mapTypes.append(("categorical", 5, 1, first10))
             }
 
-            for (type, scale, colors) in mapTypes {
+            for (type, scale, barPoints, colors) in mapTypes {
                 for (cds, name) in cdsList {
-                    // width and height without scale
-                    let width = colors.count
-                    let height = colors.count
-                    let description = "\(colorMap.name)_\(type)_\(name)"
-                    var differenceImage: [Float] = []
+                    // calculate color differences
+                    var diff: [[Float]] = []
+                    var diffBlack: [Float] = []
+                    var diffWhite: [Float] = []
                     var avgDifference: Float = 0
                     var pixelCount = 0
-                    for _yi in 0..<colors.count {
-                        let yi = colors.count - 1 - _yi
+                    for yi in 0..<colors.count {
                         let ycol = cds.mapRGB(rgb: colors[yi].asSimd())
-                        for _ in 1...scale {
-                            for xi in 0..<colors.count {
-                                let xcol = cds.mapRGB(rgb: colors[xi].asSimd())
-                                var difference: Float = -1.0  // this will be encoded as transparent
-                                if xi < yi {
-                                    difference = simd_distance(xcol, ycol)
-                                    pixelCount += 1
-                                    avgDifference += difference
-                                }
-                                else if xi > colors.count - yi {
-                                    // contrast to black - dark background
-                                    let bcol = cds.mapRGB(rgb: simd_float3.zero)
-                                    difference = simd_distance(bcol, ycol)
-                                }
-                                else  {
-                                    // contrast to white - light background
-                                    let bcol = cds.mapRGB(rgb: simd_float3.one)
-                                    difference = simd_distance(xcol, bcol)
-                                }
-                                for _ in 1...scale {
-                                    differenceImage.append(difference)
-                                }
+                        var row: [Float] = []
+                        for xi in 0..<colors.count {
+                            let xcol = cds.mapRGB(rgb: colors[xi].asSimd())
+                            let difference = simd_distance(xcol, ycol)
+                            row.append(difference)
+                            pixelCount += 1
+                            avgDifference += difference
+                        }
+                        diff.append(row)
+                    }
+                    for i in 0..<colors.count {
+                        let rcol = cds.mapRGB(rgb: colors[i].asSimd())
+
+                        // contrast to black - dark background
+                        let bcol = cds.mapRGB(rgb: simd_float3.zero)
+                        diffBlack.append(simd_distance(bcol, rcol))
+
+                        // contrast to white - light background
+                        let wcol = cds.mapRGB(rgb: simd_float3.one)
+                        diffWhite.append(simd_distance(wcol, rcol))
+                    }
+
+                    let description = "\(colorMap.name)_\(type)_\(name)"
+                    var differenceImage: [[simd_float3]] = []
+                    let gridColor = simd_float3.one * 0.7
+                    for yi in 0..<colors.count {
+                        var row: [simd_float3] = []
+
+                        for _ in 1...barPoints {
+                            row.append(colors[yi].asSimd())
+                        }
+                        row.append(gridColor)
+
+                        for xi in 0..<colors.count {
+                            let difference: Float?
+                            if xi == yi {
+                                difference = nil
                             }
+                            else if xi < yi {
+                                difference = diff[yi][xi]
+                            }
+                            else if xi > colors.count - yi {
+                                difference = diffBlack[yi]
+                            }
+                            else {
+                                difference = diffWhite[xi]
+                            }
+                            if let difference = difference {
+                                let col = referenceMap.mapToColor(
+                                    value: difference, maxValue: sqrt(3)
+                                )
+                                    .asSimd()
+                                row.append(col)
+                            }
+                            else {
+                                row.append(simd_float3.zero)
+                            }
+                        }
+                        differenceImage.append(row)
+                    }
+                    avgDifference = avgDifference / Float(pixelCount)
+
+                    // append color bar
+                    differenceImage.append(differenceImage.first!.map { _ in gridColor })
+                    var barRow: [simd_float3] = []
+                    for i in 0..<(colors.count + barPoints + 1) {
+                        let xi = i - (barPoints + 1)
+                        if xi < -1 {
+                            barRow.append(simd_float3.zero)
+                        }
+                        else if xi < 0 {
+                            barRow.append(gridColor)
+                        }
+                        else {
+                            barRow.append(colors[xi].asSimd())
+                        }
+                    }
+                    for _ in 0...barPoints {
+                        differenceImage.append(barRow)
+                    }
+
+                    // scale image
+                    var scaledImage: [[simd_float3]] = []
+                    for row in differenceImage {
+                        let newRow = row.flatMap {
+                            col in
+                            (1...scale).map { _ in col }
+                        }
+                        for _ in 1...scale {
+                            scaledImage.append(newRow)
                         }
                     }
 
-                    avgDifference = avgDifference / Float(pixelCount)
+                    // Flip y axes
+                    scaledImage.reverse()
 
-                    var u8Image = differenceImage.flatMap {
-                        difference in
-                        if difference >= 0 {
-                            let col = referenceMap.mapToColor(
-                                value: difference, maxValue: sqrt(3)
-                            )
-                            .asSimd()
+                    // width and height without scale
+                    let width = colors.count + barPoints + 1
+                    let height = colors.count + barPoints + 1
+                    var u8Image = scaledImage.flatMap {
+                        row in
+                        return row.flatMap {
+                            col in
                             return [
                                 UInt8(col.x * 255), UInt8(col.y * 255), UInt8(col.z * 255), 255,
                             ]
                         }
-                        return [0, 0, 0, 0]
                     }
 
                     let destinationURL =

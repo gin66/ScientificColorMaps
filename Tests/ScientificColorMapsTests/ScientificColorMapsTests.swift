@@ -34,5 +34,13 @@ final class ScientificColorMapsTests: XCTestCase {
         XCTAssertEqual(batlow.mapToColor(value: -1, minValue: -1, maxValue: 42), batlow.rgb_data.first)
         XCTAssertEqual(batlow.mapToColor(value: 42, minValue: -1, maxValue: 42), batlow.rgb_data.last)
     }
+    func testDiscrete() throws {
+        let batlow = ScientificColorMaps.batlow
+
+        XCTAssertEqual(batlow.discrete10().count, 10)
+        XCTAssertEqual(batlow.discrete25().count, 25)
+        XCTAssertEqual(batlow.discrete50().count, 50)
+        XCTAssertEqual(batlow.discrete100().count, 100)
+    }
 }
 

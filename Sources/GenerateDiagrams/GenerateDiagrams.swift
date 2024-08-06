@@ -109,29 +109,32 @@ struct GenerateDiagramsMain {
                         row.append(gridColor)
 
                         for xi in 0..<colors.count {
-                            let difference: Float?
+                            let difference: Float
+                            var col: simd_float3? = nil
                             if xi == yi {
-                                difference = nil
+                                col = simd_float3.zero
+                                difference = 0
                             }
                             else if xi < yi {
                                 difference = diff[yi][xi]
                             }
                             else if xi > colors.count - yi {
                                 difference = diffBlack[yi]
+                                if colors.count - xi > colors.count / 4 {
+                                    col = simd_float3.zero
+                                }
                             }
                             else {
                                 difference = diffWhite[xi]
+                                if yi > colors.count / 4 {
+                                    col = simd_float3.one
+                                }
                             }
-                            if let difference = difference {
-                                let col = referenceMap.mapToColor(
-                                    value: difference, maxValue: sqrt(3)
-                                )
+                            if col == nil {
+                                col = referenceMap.mapToColor(value: difference, maxValue: sqrt(3))
                                     .asSimd()
-                                row.append(col)
                             }
-                            else {
-                                row.append(simd_float3.zero)
-                            }
+                            row.append(col!)
                         }
                         differenceImage.append(row)
                     }

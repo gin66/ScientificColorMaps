@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 0.2.4:
+- Fix `discrete50()` implementation
+
 ## Version 0.2.3:
 - Add missing public to mapToColor()
 - Add new tool to generate difference Images

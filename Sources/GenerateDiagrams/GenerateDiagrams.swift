@@ -65,20 +65,34 @@ struct GenerateDiagramsMain {
 
             for (type, scale, colors) in mapTypes {
                 for (cds, name) in cdsList {
+                    // width and height without scale
+                    let width = colors.count
+                    let height = colors.count
                     let description = "\(colorMap.name)_\(type)_\(name)"
                     var differenceImage: [Float] = []
                     var avgDifference: Float = 0
                     var pixelCount = 0
-                    for xi in 0..<colors.count {
-                        let xcol = cds.mapRGB(rgb: colors[xi].asSimd())
+                    for _yi in 0..<colors.count {
+                        let yi = colors.count - 1 - _yi
+                        let ycol = cds.mapRGB(rgb: colors[yi].asSimd())
                         for _ in 1...scale {
-                            for yi in 0..<colors.count {
-                                var difference: Float = -1.0
-                                if xi > yi {
-                                    let ycol = cds.mapRGB(rgb: colors[yi].asSimd())
+                            for xi in 0..<colors.count {
+                                let xcol = cds.mapRGB(rgb: colors[xi].asSimd())
+                                var difference: Float = -1.0  // this will be encoded as transparent
+                                if xi < yi {
                                     difference = simd_distance(xcol, ycol)
                                     pixelCount += 1
                                     avgDifference += difference
+                                }
+                                else if xi > colors.count - yi {
+                                    // contrast to black - dark background
+                                    let bcol = cds.mapRGB(rgb: simd_float3.zero)
+                                    difference = simd_distance(bcol, ycol)
+                                }
+                                else  {
+                                    // contrast to white - light background
+                                    let bcol = cds.mapRGB(rgb: simd_float3.one)
+                                    difference = simd_distance(xcol, bcol)
                                 }
                                 for _ in 1...scale {
                                     differenceImage.append(difference)
@@ -112,8 +126,8 @@ struct GenerateDiagramsMain {
                     _ = u8Image.withUnsafeMutableBufferPointer {
                         guard
                             let cgImage = byteArrayRGBAU8ToCGImage(
-                                raw: $0.baseAddress!, w: colors.count * scale,
-                                h: colors.count * scale),
+                                raw: $0.baseAddress!, w: width * scale,
+                                h: height * scale),
                             let destination = CGImageDestinationCreateWithURL(
                                 destinationURL as CFURL, "public.png" as CFString, 1, nil)
                         else { return false }
@@ -137,14 +151,14 @@ struct GenerateDiagramsMain {
                 .appendingPathComponent("Diagrams")
                 .appendingPathComponent("Readme_\(type).md")
 
-            var selectedData: [String:Float] = [:]
+            var selectedData: [String: Float] = [:]
             for (name, value) in data {
                 if name.contains(type) {
                     selectedData[name] = value
                 }
             }
 
-            var collectedData: [(Float,String,[Float])] = []
+            var collectedData: [(Float, String, [Float])] = []
             for colorMap in ScientificColorMaps.palettes() {
                 var avgList: [Float] = []
                 for (_, name) in cdsList {
@@ -170,7 +184,8 @@ struct GenerateDiagramsMain {
             for entry in collectedData {
                 let avgDiff = String(format: "%.4f", entry.0)
                 let name = entry.1
-                let imageList = cdsList.map { "![\(name)_\($0.1)](\(type)/\(name)_\($0.1).png)" }.joined(separator: "|")
+                let imageList = cdsList.map { "![\(name)_\($0.1)](\(type)/\(name)_\($0.1).png)" }
+                    .joined(separator: "|")
                 markdownLines.append("\(avgDiff)|\(name)|\(imageList)|")
             }
             markdownLines.append("")  // ensure end of line

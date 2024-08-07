@@ -16,7 +16,7 @@ import Foundation
         case deuteranomaly(severity: Float)
         case tritanomaly(severity: Float)
 
-        func getMatrix() -> simd_float3x3 {
+        public func getMatrix() -> simd_float3x3 {
             let index: Int
             let severity: Float
             switch self {

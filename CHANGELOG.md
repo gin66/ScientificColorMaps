@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 0.2.5:
+- make `getMatrix()` public
+
 ## Version 0.2.4:
 - Fix `discrete50()` implementation
 

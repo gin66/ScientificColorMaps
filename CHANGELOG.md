@@ -1,5 +1,8 @@
 # Changelog
 
+## pre Version 0.2.6:
+- derive maxValue and offer maximized() function for a color
+
 ## Version 0.2.5:
 - make `getMatrix()` public
 

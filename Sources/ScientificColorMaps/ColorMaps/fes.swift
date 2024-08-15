@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let fes_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.049747, 0.049747, 0.049747, maxValueOfMap: 0.987857),

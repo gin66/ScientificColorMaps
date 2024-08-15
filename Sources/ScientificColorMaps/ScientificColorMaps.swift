@@ -18,13 +18,24 @@ public final class ScientificColorMaps: Sendable, Hashable, Identifiable {
 
     /// Initializes a new `ScientificColorMaps` instance with the given name, RGB data, and optional categorical data.
     init(
-        _ name: String, raw data: [ScientificColor], categories: [ScientificColor]? = nil,
-        maxValue: Float
+        _ name: String, raw data: [ScientificColor], maxValue: Float
     ) {
         self.name = name
-        rgb_data = data
-        categorical = categories
+        self.rgb_data = data
         self.maxValue = maxValue
+
+        var categorical: [ScientificColor]? = nil
+        var category: [Int: ScientificColor] = [:]
+        for color in data {
+            if let index = color.categoryIndex {
+                category[index] = color
+            }
+        }
+        if category.count == 100 {
+            categorical = (0..<100).map{category[$0]!}
+        }
+
+        self.categorical = categorical
     }
 
     public static func == (lhs: ScientificColorMaps, rhs: ScientificColorMaps) -> Bool {

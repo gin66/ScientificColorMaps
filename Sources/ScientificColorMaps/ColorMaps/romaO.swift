@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let romaO_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.451374, 0.223459, 0.341871, maxValueOfMap: 0.883963),

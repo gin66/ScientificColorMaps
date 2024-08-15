@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let cork_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.170905, 0.099347, 0.298948, maxValueOfMap: 0.931816),

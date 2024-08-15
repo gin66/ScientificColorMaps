@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let tofino_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.870438, 0.849775, 0.999921, maxValueOfMap: 0.999921),

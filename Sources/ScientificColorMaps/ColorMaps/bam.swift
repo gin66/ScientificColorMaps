@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let bam_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.396221, 0.008120, 0.296046, maxValueOfMap: 0.966004),

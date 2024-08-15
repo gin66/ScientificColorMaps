@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let berlin_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.621082, 0.690182, 0.999507, maxValueOfMap: 0.999873),

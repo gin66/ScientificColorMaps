@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let lisbon_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.900189, 0.899861, 0.999910, maxValueOfMap: 0.999998),

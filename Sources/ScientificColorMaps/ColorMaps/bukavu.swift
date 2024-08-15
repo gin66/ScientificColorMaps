@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let bukavu_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.100212, 0.200031, 0.200060, maxValueOfMap: 0.996576),

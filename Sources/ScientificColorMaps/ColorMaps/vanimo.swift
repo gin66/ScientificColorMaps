@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let vanimo_raw: [ScientificColor] = [
       ScientificColor(0, nil, 1.000000, 0.803458, 0.992153, maxValueOfMap: 1.000000),

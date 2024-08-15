@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let vikO_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.309794, 0.100897, 0.238434, maxValueOfMap: 0.852559),

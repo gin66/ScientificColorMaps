@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let managua_raw: [ScientificColor] = [
       ScientificColor(0, nil, 1.000000, 0.812630, 0.404239, maxValueOfMap: 1.000000),

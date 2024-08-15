@@ -140,6 +140,7 @@ let fileHeader = """
         //
         // - Copyright (c) 2024, Jochen Kiemes
         //   see LICENSE
+        //
         extension ScientificColorMaps {
         """
 
@@ -175,9 +176,15 @@ for (map, cmPair) in maps {
         colorDict[rgb] = i
     }
 
-    // If the colormap has a categorical version, determine the category index of each color
+    // Add the palette to the list of palettes
+    palettes.append(map)
+
+    // If the colormap has a categorical version, add it to the list of palettes with categories
+    // and determine the category index of each color
     var colorCategory: [Int : Int] = [:]
     if let cm = cmPair.1 {
+        palettesWithCategory.append(map)
+
         // Add the categorical colormap data
         for (i, rgb) in cm.enumerated() {
             let colIndex = colorDict[rgb]! // should not fail, if category is well defined
@@ -197,29 +204,8 @@ for (map, cmPair) in maps {
     }
     swiftCode.append("   ]")
 
-    // Add the palette to the list of palettes
-    palettes.append(map)
-
-    // If the colormap has a categorical version, add it to the list of palettes with categories
-    if let cm = cmPair.1 {
-        palettesWithCategory.append(map)
-
-        // Add the categorical colormap data
-        swiftCode.append("   private static let \(map)_category_raw: [ScientificColor] = [")
-        for (i, rgb) in cm.enumerated() {
-            let colIndex = colorDict[rgb]! // should not fail, if category is well defined
-            swiftCode.append(String(format: "      ScientificColor(%d, %d, %.6f, %.6f, %.6f, maxValueOfMap: %.6f),",
-                                    colIndex, i,  rgb.red, rgb.green, rgb.blue, maxValue))
-        }
-        swiftCode.append("   ]")
-
-        // Add the palette to the ScientificColorMaps extension
-        swiftCode.append("   public static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw, categories: \(map)_category_raw, \(maxValueString))")
-    }
-    else {
-        // Add the palette to the ScientificColorMaps extension
-        swiftCode.append("   public static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw, \(maxValueString))")
-    }
+    // Add the palette to the ScientificColorMaps extension
+    swiftCode.append("   public static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw, \(maxValueString))")
 
     // Close the extension
     swiftCode.append("}")

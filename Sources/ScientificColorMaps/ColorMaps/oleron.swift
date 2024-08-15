@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let oleron_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.101051, 0.150029, 0.350268, maxValueOfMap: 0.999975),

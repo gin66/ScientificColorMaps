@@ -9,6 +9,7 @@
 //
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
+//
 extension ScientificColorMaps {
    private static let broc_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.170813, 0.100272, 0.299848, maxValueOfMap: 0.938632),

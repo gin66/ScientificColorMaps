@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let batlowW_raw: [ScientificColor] = [
       ScientificColor(0, 1, 0.004637, 0.098343, 0.349833, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.008580, 0.104559, 0.350923, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 1.000000, 0.991546, 0.991332, maxValueOfMap: 1.000000),
       ScientificColor(255, 0, 1.000000, 0.995792, 0.995630, maxValueOfMap: 1.000000),
    ]
-   public static let batlowW = ScientificColorMaps("batlowW", raw: ScientificColorMaps.batlowW_raw, maxValue: 1.000000)
+   public static let batlowW = ScientificColorMap("batlowW", raw: ScientificColorMap.batlowW_raw, maxValue: 1.000000)
 }

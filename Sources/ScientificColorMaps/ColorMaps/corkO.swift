@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let corkO_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.246514, 0.243518, 0.229200, maxValueOfMap: 0.794227),
       ScientificColor(1, nil, 0.246074, 0.242433, 0.232323, maxValueOfMap: 0.794227),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.247413, 0.245975, 0.223258, maxValueOfMap: 0.794227),
       ScientificColor(255, nil, 0.246960, 0.244699, 0.226195, maxValueOfMap: 0.794227),
    ]
-   public static let corkO = ScientificColorMaps("corkO", raw: ScientificColorMaps.corkO_raw, maxValue: 0.794227)
+   public static let corkO = ScientificColorMap("corkO", raw: ScientificColorMap.corkO_raw, maxValue: 0.794227)
 }

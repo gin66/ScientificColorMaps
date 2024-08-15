@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let naviaW_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.014333, 0.077207, 0.154315, maxValueOfMap: 0.997946),
       ScientificColor(1, nil, 0.016066, 0.082375, 0.161738, maxValueOfMap: 0.997946),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.994669, 0.996915, 0.986899, maxValueOfMap: 0.997946),
       ScientificColor(255, nil, 0.996481, 0.997946, 0.991253, maxValueOfMap: 0.997946),
    ]
-   public static let naviaW = ScientificColorMaps("naviaW", raw: ScientificColorMaps.naviaW_raw, maxValue: 0.997946)
+   public static let naviaW = ScientificColorMap("naviaW", raw: ScientificColorMap.naviaW_raw, maxValue: 0.997946)
 }

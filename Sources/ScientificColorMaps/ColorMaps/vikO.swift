@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let vikO_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.309794, 0.100897, 0.238434, maxValueOfMap: 0.852559),
       ScientificColor(1, nil, 0.306925, 0.103057, 0.243183, maxValueOfMap: 0.852559),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.315531, 0.096976, 0.229197, maxValueOfMap: 0.852559),
       ScientificColor(255, nil, 0.312640, 0.098899, 0.233767, maxValueOfMap: 0.852559),
    ]
-   public static let vikO = ScientificColorMaps("vikO", raw: ScientificColorMaps.vikO_raw, maxValue: 0.852559)
+   public static let vikO = ScientificColorMap("vikO", raw: ScientificColorMap.vikO_raw, maxValue: 0.852559)
 }

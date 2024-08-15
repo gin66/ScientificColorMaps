@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let bamako_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.000030, 0.229985, 0.280027, maxValueOfMap: 0.999927),
       ScientificColor(1, nil, 0.001937, 0.231185, 0.278899, maxValueOfMap: 0.999927),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.996034, 0.895932, 0.671299, maxValueOfMap: 0.999927),
       ScientificColor(255, 1, 0.999927, 0.899854, 0.679717, maxValueOfMap: 0.999927),
    ]
-   public static let bamako = ScientificColorMaps("bamako", raw: ScientificColorMaps.bamako_raw, maxValue: 0.999927)
+   public static let bamako = ScientificColorMap("bamako", raw: ScientificColorMap.bamako_raw, maxValue: 0.999927)
 }

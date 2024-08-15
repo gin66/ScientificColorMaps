@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let lisbon_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.900189, 0.899861, 0.999910, maxValueOfMap: 0.999998),
       ScientificColor(1, nil, 0.889566, 0.892099, 0.993603, maxValueOfMap: 0.999998),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.992296, 0.991379, 0.839477, maxValueOfMap: 0.999998),
       ScientificColor(255, nil, 0.999870, 0.999998, 0.849990, maxValueOfMap: 0.999998),
    ]
-   public static let lisbon = ScientificColorMaps("lisbon", raw: ScientificColorMaps.lisbon_raw, maxValue: 0.999998)
+   public static let lisbon = ScientificColorMap("lisbon", raw: ScientificColorMap.lisbon_raw, maxValue: 0.999998)
 }

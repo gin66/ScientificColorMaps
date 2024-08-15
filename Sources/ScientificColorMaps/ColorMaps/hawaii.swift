@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let hawaii_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.550541, 0.006842, 0.451980, maxValueOfMap: 0.993775),
       ScientificColor(1, nil, 0.551494, 0.015367, 0.447972, maxValueOfMap: 0.993775),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.693064, 0.948662, 0.990803, maxValueOfMap: 0.993775),
       ScientificColor(255, 1, 0.703779, 0.948977, 0.993775, maxValueOfMap: 0.993775),
    ]
-   public static let hawaii = ScientificColorMaps("hawaii", raw: ScientificColorMaps.hawaii_raw, maxValue: 0.993775)
+   public static let hawaii = ScientificColorMap("hawaii", raw: ScientificColorMap.hawaii_raw, maxValue: 0.993775)
 }

@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let nuuk_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.018013, 0.350759, 0.550621, maxValueOfMap: 0.996243),
       ScientificColor(1, nil, 0.025926, 0.351768, 0.549169, maxValueOfMap: 0.996243),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.992589, 0.992433, 0.693355, maxValueOfMap: 0.996243),
       ScientificColor(255, 1, 0.996243, 0.996171, 0.698978, maxValueOfMap: 0.996243),
    ]
-   public static let nuuk = ScientificColorMaps("nuuk", raw: ScientificColorMaps.nuuk_raw, maxValue: 0.996243)
+   public static let nuuk = ScientificColorMap("nuuk", raw: ScientificColorMap.nuuk_raw, maxValue: 0.996243)
 }

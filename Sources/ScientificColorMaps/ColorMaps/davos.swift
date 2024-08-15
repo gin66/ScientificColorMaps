@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let davos_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.000000, 0.019685, 0.292012, maxValueOfMap: 0.997988),
       ScientificColor(1, nil, 0.000000, 0.027123, 0.297477, maxValueOfMap: 0.997988),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.996726, 0.996746, 0.992202, maxValueOfMap: 0.997988),
       ScientificColor(255, nil, 0.997520, 0.997764, 0.997988, maxValueOfMap: 0.997988),
    ]
-   public static let davos = ScientificColorMaps("davos", raw: ScientificColorMaps.davos_raw, maxValue: 0.997988)
+   public static let davos = ScientificColorMap("davos", raw: ScientificColorMap.davos_raw, maxValue: 0.997988)
 }

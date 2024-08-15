@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let oleron_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.101051, 0.150029, 0.350268, maxValueOfMap: 0.999975),
       ScientificColor(1, nil, 0.107211, 0.155787, 0.356085, maxValueOfMap: 0.999975),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.989424, 0.983687, 0.890903, maxValueOfMap: 0.999975),
       ScientificColor(255, nil, 0.990487, 0.990203, 0.900235, maxValueOfMap: 0.999975),
    ]
-   public static let oleron = ScientificColorMaps("oleron", raw: ScientificColorMaps.oleron_raw, maxValue: 0.999975)
+   public static let oleron = ScientificColorMap("oleron", raw: ScientificColorMap.oleron_raw, maxValue: 0.999975)
 }

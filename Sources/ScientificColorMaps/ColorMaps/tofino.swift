@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let tofino_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.870438, 0.849775, 0.999921, maxValueOfMap: 0.999921),
       ScientificColor(1, nil, 0.859835, 0.842322, 0.995324, maxValueOfMap: 0.999921),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.848297, 0.893962, 0.603631, maxValueOfMap: 0.999921),
       ScientificColor(255, nil, 0.860031, 0.900031, 0.609764, maxValueOfMap: 0.999921),
    ]
-   public static let tofino = ScientificColorMaps("tofino", raw: ScientificColorMaps.tofino_raw, maxValue: 0.999921)
+   public static let tofino = ScientificColorMap("tofino", raw: ScientificColorMap.tofino_raw, maxValue: 0.999921)
 }

@@ -141,7 +141,7 @@ let fileHeader = """
         // - Copyright (c) 2024, Jochen Kiemes
         //   see LICENSE
         //
-        extension ScientificColorMaps {
+        extension ScientificColorMap {
         """
 
 // Arrays to store the names of palettes with and without categories
@@ -204,8 +204,8 @@ for (map, cmPair) in maps {
     }
     swiftCode.append("   ]")
 
-    // Add the palette to the ScientificColorMaps extension
-    swiftCode.append("   public static let \(map) = ScientificColorMaps(\"\(map)\", raw: ScientificColorMaps.\(map)_raw, \(maxValueString))")
+    // Add the palette to the ScientificColorMap extension
+    swiftCode.append("   public static let \(map) = ScientificColorMap(\"\(map)\", raw: ScientificColorMap.\(map)_raw, \(maxValueString))")
 
     // Close the extension
     swiftCode.append("}")
@@ -227,17 +227,17 @@ palettesWithCategory.sort()
 // Create the Palettes.swift file
 var swiftCode: [String] = []
 swiftCode.append(fileHeader)
-swiftCode.append("   public static func palettes() -> [ScientificColorMaps] {")
+swiftCode.append("   public static func palettes() -> [ScientificColorMap] {")
 swiftCode.append("      [")
 for palette in palettes {
-    swiftCode.append("        ScientificColorMaps.\(palette),")
+    swiftCode.append("        ScientificColorMap.\(palette),")
 }
 swiftCode.append("      ]")
 swiftCode.append("   }")
-swiftCode.append("   public static func categorizedPalettes() -> [ScientificColorMaps] {")
+swiftCode.append("   public static func categorizedPalettes() -> [ScientificColorMap] {")
 swiftCode.append("      [")
 for palette in palettesWithCategory {
-    swiftCode.append("        ScientificColorMaps.\(palette),")
+    swiftCode.append("        ScientificColorMap.\(palette),")
 }
 swiftCode.append("      ]")
 swiftCode.append("   }")

@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let broc_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.170813, 0.100272, 0.299848, maxValueOfMap: 0.938632),
       ScientificColor(1, nil, 0.170748, 0.106342, 0.305576, maxValueOfMap: 0.938632),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.155539, 0.156487, 0.008001, maxValueOfMap: 0.938632),
       ScientificColor(255, nil, 0.150046, 0.150558, 0.001930, maxValueOfMap: 0.938632),
    ]
-   public static let broc = ScientificColorMaps("broc", raw: ScientificColorMaps.broc_raw, maxValue: 0.938632)
+   public static let broc = ScientificColorMap("broc", raw: ScientificColorMap.broc_raw, maxValue: 0.938632)
 }

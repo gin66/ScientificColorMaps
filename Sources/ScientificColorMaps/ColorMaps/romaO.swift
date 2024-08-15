@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let romaO_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.451374, 0.223459, 0.341871, maxValueOfMap: 0.883963),
       ScientificColor(1, nil, 0.454179, 0.222444, 0.336099, maxValueOfMap: 0.883963),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.445706, 0.225957, 0.353661, maxValueOfMap: 0.883963),
       ScientificColor(255, nil, 0.448555, 0.224596, 0.347728, maxValueOfMap: 0.883963),
    ]
-   public static let romaO = ScientificColorMaps("romaO", raw: ScientificColorMaps.romaO_raw, maxValue: 0.883963)
+   public static let romaO = ScientificColorMap("romaO", raw: ScientificColorMap.romaO_raw, maxValue: 0.883963)
 }

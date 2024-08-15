@@ -1,5 +1,5 @@
 //
-//  ScientificColorMaps+CDS.swift
+//  ScientificColorMap+CDS.swift
 //
 //
 //  Created by Jochen Kiemes on 04.08.24.

@@ -55,8 +55,8 @@ struct GenerateDiagramsMain {
             (ColorDeficiency.tritanomaly(severity: 1), "tritanomaly"),
         ]
 
-        let referenceMap = ScientificColorMaps.vik
-        for colorMap in ScientificColorMaps.palettes() {
+        let referenceMap = ScientificColorMap.vik
+        for colorMap in ScientificColorMap.palettes() {
             var mapTypes: [(String, Int, Int, [ScientificColor])] = [
                 ("range", 1, 9, colorMap.discrete50())
             ]
@@ -229,7 +229,7 @@ struct GenerateDiagramsMain {
             }
 
             var collectedData: [(Float, String, [Float])] = []
-            for colorMap in ScientificColorMaps.palettes() {
+            for colorMap in ScientificColorMap.palettes() {
                 var avgList: [Float] = []
                 for (_, name) in cdsList {
                     let description = "\(colorMap.name)_\(type)_\(name)"

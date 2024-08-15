@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let managua_raw: [ScientificColor] = [
       ScientificColor(0, nil, 1.000000, 0.812630, 0.404239, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.995163, 0.804546, 0.401552, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.501444, 0.899006, 0.995121, maxValueOfMap: 1.000000),
       ScientificColor(255, nil, 0.504115, 0.907076, 0.999779, maxValueOfMap: 1.000000),
    ]
-   public static let managua = ScientificColorMaps("managua", raw: ScientificColorMaps.managua_raw, maxValue: 1.000000)
+   public static let managua = ScientificColorMap("managua", raw: ScientificColorMap.managua_raw, maxValue: 1.000000)
 }

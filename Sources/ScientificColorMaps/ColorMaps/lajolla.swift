@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let lajolla_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.098791, 0.099669, 0.000088, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.102398, 0.100814, 0.002016, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.999523, 0.994303, 0.784423, maxValueOfMap: 1.000000),
       ScientificColor(255, 1, 1.000000, 0.997796, 0.794247, maxValueOfMap: 1.000000),
    ]
-   public static let lajolla = ScientificColorMaps("lajolla", raw: ScientificColorMaps.lajolla_raw, maxValue: 1.000000)
+   public static let lajolla = ScientificColorMap("lajolla", raw: ScientificColorMap.lajolla_raw, maxValue: 1.000000)
 }

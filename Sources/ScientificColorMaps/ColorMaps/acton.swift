@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let acton_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.149398, 0.049588, 0.249199, maxValueOfMap: 0.979353),
       ScientificColor(1, nil, 0.152919, 0.054745, 0.253736, maxValueOfMap: 0.979353),
@@ -269,6 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.938996, 0.915599, 0.976685, maxValueOfMap: 0.979353),
       ScientificColor(255, 1, 0.939858, 0.919150, 0.979353, maxValueOfMap: 0.979353),
    ]
-
-   public static let acton = ScientificColorMaps("acton", raw: ScientificColorMaps.acton_raw, maxValue: 0.979353)
+   public static let acton = ScientificColorMap("acton", raw: ScientificColorMap.acton_raw, maxValue: 0.979353)
 }

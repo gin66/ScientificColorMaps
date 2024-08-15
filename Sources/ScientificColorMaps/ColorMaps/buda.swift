@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let buda_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.700151, 0.002745, 0.700612, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.700191, 0.010833, 0.697186, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.995418, 0.995218, 0.400262, maxValueOfMap: 1.000000),
       ScientificColor(255, 1, 1.000000, 1.000000, 0.400203, maxValueOfMap: 1.000000),
    ]
-   public static let buda = ScientificColorMaps("buda", raw: ScientificColorMaps.buda_raw, maxValue: 1.000000)
+   public static let buda = ScientificColorMap("buda", raw: ScientificColorMap.buda_raw, maxValue: 1.000000)
 }

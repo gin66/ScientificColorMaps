@@ -21,7 +21,7 @@ To use the color maps in this package, simply import it into your Swift project 
 ```swift
 import ScientificColorMaps
 
-let colorMap = ScientificColorMaps.batlow
+let colorMap = ScientificColorMap.batlow
 ```
 
 ## Color Representation - ScientificColor
@@ -46,13 +46,13 @@ It provides the `index: Int` (0-255) of the related color into the respective pa
 
 ## List of Color palettes
 Every color palette offers 256 colors
-`ScientificColorMaps.palettes() -> [ScientificColorMaps]`
+`ScientificColorMap.palettes() -> [ScientificColorMap]`
 
 ## List of Color palettes with categories
 All color palettes, which offer in addition 100 categories
-`ScientificColorMaps.categorizedPalettes() -> [ScientificColorMaps]`
+`ScientificColorMap.categorizedPalettes() -> [ScientificColorMap]`
 
-## API of ScientificColorMaps
+## API of ScientificColorMap
 * `name` ... String
 * `rgb_data` ... array of 256 `[ScientificColor]`
 * `categorical` ... array of 100 `[ScientificColor]` if defined, otherwise nil

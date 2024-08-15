@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let lipari_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.011370, 0.073240, 0.148284, maxValueOfMap: 0.992307),
       ScientificColor(1, nil, 0.013965, 0.079062, 0.155370, maxValueOfMap: 0.992307),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.989038, 0.952817, 0.847836, maxValueOfMap: 0.992307),
       ScientificColor(255, 1, 0.992307, 0.959017, 0.856609, maxValueOfMap: 0.992307),
    ]
-   public static let lipari = ScientificColorMaps("lipari", raw: ScientificColorMaps.lipari_raw, maxValue: 0.992307)
+   public static let lipari = ScientificColorMap("lipari", raw: ScientificColorMap.lipari_raw, maxValue: 0.992307)
 }

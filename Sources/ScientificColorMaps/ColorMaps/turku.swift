@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let turku_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.000063, 0.000005, 0.000036, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.007290, 0.007204, 0.006548, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 1.000000, 0.897457, 0.896094, maxValueOfMap: 1.000000),
       ScientificColor(255, 1, 1.000000, 0.901739, 0.900670, maxValueOfMap: 1.000000),
    ]
-   public static let turku = ScientificColorMaps("turku", raw: ScientificColorMaps.turku_raw, maxValue: 1.000000)
+   public static let turku = ScientificColorMap("turku", raw: ScientificColorMap.turku_raw, maxValue: 1.000000)
 }

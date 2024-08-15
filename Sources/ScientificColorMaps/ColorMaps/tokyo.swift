@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let tokyo_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.108778, 0.055655, 0.202533, maxValueOfMap: 0.987985),
       ScientificColor(1, nil, 0.115526, 0.057566, 0.204666, maxValueOfMap: 0.987985),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.932476, 0.987261, 0.861430, maxValueOfMap: 0.987985),
       ScientificColor(255, 1, 0.937066, 0.987985, 0.866202, maxValueOfMap: 0.987985),
    ]
-   public static let tokyo = ScientificColorMaps("tokyo", raw: ScientificColorMaps.tokyo_raw, maxValue: 0.987985)
+   public static let tokyo = ScientificColorMap("tokyo", raw: ScientificColorMap.tokyo_raw, maxValue: 0.987985)
 }

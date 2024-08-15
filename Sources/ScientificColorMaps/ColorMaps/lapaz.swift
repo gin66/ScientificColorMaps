@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let lapaz_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.103516, 0.047787, 0.393530, maxValueOfMap: 0.997061),
       ScientificColor(1, nil, 0.104891, 0.053521, 0.396743, maxValueOfMap: 0.997061),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.996235, 0.945814, 0.944370, maxValueOfMap: 0.997061),
       ScientificColor(255, 1, 0.997061, 0.949794, 0.951206, maxValueOfMap: 0.997061),
    ]
-   public static let lapaz = ScientificColorMaps("lapaz", raw: ScientificColorMaps.lapaz_raw, maxValue: 0.997061)
+   public static let lapaz = ScientificColorMap("lapaz", raw: ScientificColorMap.lapaz_raw, maxValue: 0.997061)
 }

@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let bukavu_raw: [ScientificColor] = [
       ScientificColor(0, nil, 0.100212, 0.200031, 0.200060, maxValueOfMap: 0.996576),
       ScientificColor(1, nil, 0.101191, 0.203272, 0.207592, maxValueOfMap: 0.996576),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.926219, 0.923605, 0.976769, maxValueOfMap: 0.996576),
       ScientificColor(255, nil, 0.929921, 0.929373, 0.988709, maxValueOfMap: 0.996576),
    ]
-   public static let bukavu = ScientificColorMaps("bukavu", raw: ScientificColorMaps.bukavu_raw, maxValue: 0.996576)
+   public static let bukavu = ScientificColorMap("bukavu", raw: ScientificColorMap.bukavu_raw, maxValue: 0.996576)
 }

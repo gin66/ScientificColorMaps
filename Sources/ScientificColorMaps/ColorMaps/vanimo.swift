@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let vanimo_raw: [ScientificColor] = [
       ScientificColor(0, nil, 1.000000, 0.803458, 0.992153, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.993966, 0.791971, 0.983740, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.736200, 0.980634, 0.631914, maxValueOfMap: 1.000000),
       ScientificColor(255, nil, 0.744576, 0.991413, 0.647477, maxValueOfMap: 1.000000),
    ]
-   public static let vanimo = ScientificColorMaps("vanimo", raw: ScientificColorMaps.vanimo_raw, maxValue: 1.000000)
+   public static let vanimo = ScientificColorMap("vanimo", raw: ScientificColorMap.vanimo_raw, maxValue: 1.000000)
 }

@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let devon_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.171032, 0.100402, 0.299782, maxValueOfMap: 0.999970),
       ScientificColor(1, nil, 0.170868, 0.104144, 0.303372, maxValueOfMap: 0.999970),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.996621, 0.996340, 0.999290, maxValueOfMap: 0.999970),
       ScientificColor(255, nil, 0.999916, 0.999970, 0.999952, maxValueOfMap: 0.999970),
    ]
-   public static let devon = ScientificColorMaps("devon", raw: ScientificColorMaps.devon_raw, maxValue: 0.999970)
+   public static let devon = ScientificColorMap("devon", raw: ScientificColorMap.devon_raw, maxValue: 0.999970)
 }

@@ -1,7 +1,8 @@
 # Changelog
 
-## Version 0.2.6:
+## Version 0.3.0:
 - derive maxValue and offer maximized() function for a color
+- rename ScientificColorMaps class to ScientificColorMap
 
 ## Version 0.2.5:
 - make `getMatrix()` public

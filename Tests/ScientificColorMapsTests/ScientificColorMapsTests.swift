@@ -3,19 +3,19 @@ import XCTest
 
 final class ScientificColorMapsTests: XCTestCase {
     func testExistence() throws {
-        let batlow = ScientificColorMaps.batlow
+        let batlow = ScientificColorMap.batlow
 
         XCTAssertEqual(batlow.rgb_data.count, 256)
     }
     func testIterator() throws {
-        let colormaps = ScientificColorMaps.palettes()
+        let colormaps = ScientificColorMap.palettes()
 
         for scm in colormaps {
             XCTAssertEqual(scm.rgb_data.count, 256)
         }
     }
     func testIteratorCategorized() throws {
-        let colormaps = ScientificColorMaps.categorizedPalettes()
+        let colormaps = ScientificColorMap.categorizedPalettes()
 
         for scm in colormaps {
             XCTAssertNotNil(scm.categorical)
@@ -25,7 +25,7 @@ final class ScientificColorMapsTests: XCTestCase {
         }
     }
     func testMapColor() throws {
-        let batlow = ScientificColorMaps.batlow
+        let batlow = ScientificColorMap.batlow
 
         XCTAssertEqual(batlow.mapToColor(value: 0), batlow.rgb_data.first)
         XCTAssertEqual(batlow.mapToColor(value: 1), batlow.rgb_data.last)
@@ -35,7 +35,7 @@ final class ScientificColorMapsTests: XCTestCase {
         XCTAssertEqual(batlow.mapToColor(value: 42, minValue: -1, maxValue: 42), batlow.rgb_data.last)
     }
     func testDiscrete() throws {
-        let batlow = ScientificColorMaps.batlow
+        let batlow = ScientificColorMap.batlow
 
         XCTAssertEqual(batlow.discrete10().count, 10)
         XCTAssertEqual(batlow.discrete25().count, 25)

@@ -10,7 +10,7 @@
 // - Copyright (c) 2024, Jochen Kiemes
 //   see LICENSE
 //
-extension ScientificColorMaps {
+extension ScientificColorMap {
    private static let imola_raw: [ScientificColor] = [
       ScientificColor(0, 0, 0.101441, 0.200110, 0.700194, maxValueOfMap: 1.000000),
       ScientificColor(1, nil, 0.103275, 0.203014, 0.698806, maxValueOfMap: 1.000000),
@@ -269,5 +269,5 @@ extension ScientificColorMaps {
       ScientificColor(254, nil, 0.991797, 0.997245, 0.400120, maxValueOfMap: 1.000000),
       ScientificColor(255, 1, 1.000000, 0.999989, 0.400094, maxValueOfMap: 1.000000),
    ]
-   public static let imola = ScientificColorMaps("imola", raw: ScientificColorMaps.imola_raw, maxValue: 1.000000)
+   public static let imola = ScientificColorMap("imola", raw: ScientificColorMap.imola_raw, maxValue: 1.000000)
 }

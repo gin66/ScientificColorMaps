@@ -2,7 +2,7 @@
 // see LICENSE
 
 /// A class representing a scientific color map.
-public final class ScientificColorMaps: Sendable, Hashable, Identifiable {
+public final class ScientificColorMap: Sendable, Hashable, Identifiable {
     /// The name of the color map.
     public let name: String
 
@@ -16,7 +16,7 @@ public final class ScientificColorMaps: Sendable, Hashable, Identifiable {
     // This allows to scale up the colors without exceeding the maximum value of 1 for the rgb values.
     public let maxValue: Float
 
-    /// Initializes a new `ScientificColorMaps` instance with the given name, RGB data, and optional categorical data.
+    /// Initializes a new `ScientificColorMap` instance with the given name, RGB data, and optional categorical data.
     init(
         _ name: String, raw data: [ScientificColor], maxValue: Float
     ) {
@@ -38,7 +38,7 @@ public final class ScientificColorMaps: Sendable, Hashable, Identifiable {
         self.categorical = categorical
     }
 
-    public static func == (lhs: ScientificColorMaps, rhs: ScientificColorMaps) -> Bool {
+    public static func == (lhs: ScientificColorMap, rhs: ScientificColorMap) -> Bool {
         return lhs.name == rhs.name
     }
 

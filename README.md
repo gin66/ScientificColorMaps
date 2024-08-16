@@ -77,7 +77,7 @@ adjust the severity from 0 - none to 1 - full.
 
 The enum provides the function `mapRGB(rgb: simd_float3) -> simd_float3` to map the actual rgb value to a simulated rgb value, which is from view under color deficiency.
 
-To illustrate the inner contrast, there are diagrams generated using `swift run GenerateDiagram` and stored in the folder Diagrams. The simulated delta for the colormap `discrete50()` in the folder `range` and first 10 of `categorical` in the folder `categorical`. The resulting images are squares with the colormaps` color along each axis and the color value represents the difference between the colors. The upper left triangle is the difference between the color along x- and y-axis. The two lower right triangles illustrates the contrast to white and black as background color. The difference of the color is the distance between the rgb-values. This cannot be expected to relate to the ability to distinguish between colors, but at least it gives hints in this regard. For example imola appears to be readable well on black and white background.
+To illustrate the inner contrast, there are diagrams generated using `swift run GenerateDiagram` and stored in the folder Diagrams. The simulated delta for the colormap `discrete50()` in the folder `range` and first 10 of `categorical` in the folder `categorical`. The resulting images are squares with the colormaps` color along each axis and the color value represents the difference between the colors. The upper left triangle is the difference between the color along x- and y-axis. The two lower right triangles illustrates the contrast to white and black as background color. For the difference of the color is the WCAG-contrast calculated between the rgb-values. 
 
 # Note:
 
@@ -90,6 +90,8 @@ API may change
 # License
 
 This package is licensed under the MIT License. The color data has its own license. See in the respective file +LICENCE.pdf
+
+The package WCAG-Colors and its package dependency comes with its own licenses. The package is only used to create the diagrams and not part of the library itself.
 
 ## Acknowledgments
 

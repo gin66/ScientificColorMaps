@@ -4,6 +4,8 @@ import ImageIO
 import ScientificColorMaps
 import UniformTypeIdentifiers
 import simd
+import WCAG_Colors
+import SwiftUI
 
 func byteArrayRGBAU8ToCGImage(
     raw: UnsafeMutablePointer<UInt8>,  // Your byte array
@@ -41,6 +43,12 @@ func byteArrayRGBAU8ToCGImage(
     return image
 }
 
+func getContrast(_ col1: simd_float3, _ col2: simd_float3) -> Float {
+    let color1 = NSColor(cgColor: CGColor(red: CGFloat(col1.x), green: CGFloat(col1.y), blue: CGFloat(col1.z), alpha: 1))!
+    let color2 = NSColor(cgColor: CGColor(red: CGFloat(col2.x), green: CGFloat(col2.y), blue: CGFloat(col2.z), alpha: 1))!
+    return Float(TypeColor.getContrastRatio(forTextColor: color1, onBackgroundColor: color2)!)
+}
+
 @main
 struct GenerateDiagramsMain {
     static func main() {
@@ -54,6 +62,8 @@ struct GenerateDiagramsMain {
             (ColorDeficiency.deuteranomaly(severity: 1), "deuteranomaly"),
             (ColorDeficiency.tritanomaly(severity: 1), "tritanomaly"),
         ]
+
+        var globalMaxContrast: Float = 0
 
         let referenceMap = ScientificColorMap.vik
         for colorMap in ScientificColorMap.palettes() {
@@ -78,7 +88,11 @@ struct GenerateDiagramsMain {
                         var row: [Float] = []
                         for xi in 0..<colors.count {
                             let xcol = cds.mapRGB(rgb: colors[xi].asSimd())
-                            let difference = simd_distance(xcol, ycol)
+
+                            let contrast = getContrast(xcol, ycol)
+                            globalMaxContrast = max(globalMaxContrast, contrast)
+                            let difference = min(contrast, 7)/7
+
                             row.append(difference)
                             pixelCount += 1
                             avgDifference += difference
@@ -90,11 +104,21 @@ struct GenerateDiagramsMain {
 
                         // contrast to black - dark background
                         let bcol = cds.mapRGB(rgb: simd_float3.zero)
-                        diffBlack.append(simd_distance(bcol, rcol))
+
+                        let bcontrast = getContrast(bcol, rcol)
+                        globalMaxContrast = max(globalMaxContrast, bcontrast)
+                        let bdifference = min(bcontrast, 7)/7
+
+                        diffBlack.append(bdifference)
 
                         // contrast to white - light background
                         let wcol = cds.mapRGB(rgb: simd_float3.one)
-                        diffWhite.append(simd_distance(wcol, rcol))
+
+                        let wcontrast = getContrast(bcol, rcol)
+                        globalMaxContrast = max(globalMaxContrast, wcontrast)
+                        let wdifference = min(wcontrast, 7)/7
+
+                        diffWhite.append(wdifference)
                     }
 
                     let description = "\(colorMap.name)_\(type)_\(name)"
@@ -262,5 +286,7 @@ struct GenerateDiagramsMain {
             let s = markdownLines.joined(separator: "\n")
             try! s.write(to: destinationURL, atomically: true, encoding: .utf8)
         }
+
+        print("Max contrast: \(globalMaxContrast)")
     }
 }

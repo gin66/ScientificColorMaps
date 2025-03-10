@@ -33,7 +33,7 @@ let package = Package(
     .executableTarget(
       name: "GenerateDiagrams",
       dependencies: [
-	"ScientificColorMaps", "WCAG-Colors"
+        "ScientificColorMaps", "WCAG-Colors",
       ]
     ),
   ]

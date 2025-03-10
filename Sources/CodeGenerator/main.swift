@@ -4,116 +4,115 @@ import Foundation
 
 // List of available colormaps
 let colormaps: [String] = [
-    "acton",
-    "bam",
-    "bamO",
-    "bamako",
-    "batlow",
-    "batlowK",
-    "batlowW",
-    "berlin",
-    "bilbao",
-    "broc",
-    "brocO",
-    "buda",
-    "bukavu",
-    "cork",
-    "corkO",
-    "davos",
-    "devon",
-    "fes",
-    "glasgow",
-    "grayC",
-    "hawaii",
-    "imola",
-    "lajolla",
-    "lapaz",
-    "lipari",
-    "lisbon",
-    "managua",
-    "navia",
-    "naviaW",
-    "nuuk",
-    "oleron",
-    "oslo",
-    "roma",
-    "romaO",
-    "tofino",
-    "tokyo",
-    "turku",
-    "vanimo",
-    "vik",
-    "vikO"
+  "acton",
+  "bam",
+  "bamO",
+  "bamako",
+  "batlow",
+  "batlowK",
+  "batlowW",
+  "berlin",
+  "bilbao",
+  "broc",
+  "brocO",
+  "buda",
+  "bukavu",
+  "cork",
+  "corkO",
+  "davos",
+  "devon",
+  "fes",
+  "glasgow",
+  "grayC",
+  "hawaii",
+  "imola",
+  "lajolla",
+  "lapaz",
+  "lipari",
+  "lisbon",
+  "managua",
+  "navia",
+  "naviaW",
+  "nuuk",
+  "oleron",
+  "oslo",
+  "roma",
+  "romaO",
+  "tofino",
+  "tokyo",
+  "turku",
+  "vanimo",
+  "vik",
+  "vikO",
 ]
 
 struct RGB: Hashable {
-    let red: Float
-    let green: Float
-    let blue: Float
+  let red: Float
+  let green: Float
+  let blue: Float
 }
 
-/**
- Reads a colormap from a file.
-
- - Parameters:
-   - map: The name of the colormap to read.
-   - categorical: Whether to read the categorical version of the colormap.
-
- - Returns: The colormap as a 2D array of floats, or nil if the file could not be read.
- */
+/// Reads a colormap from a file.
+///
+/// - Parameters:
+///   - map: The name of the colormap to read.
+///   - categorical: Whether to read the categorical version of the colormap.
+///
+/// - Returns: The colormap as a 2D array of floats, or nil if the file could not be read.
 func readMap(map: String, categorical: Bool) -> [RGB]? {
-    // Get the current directory
-    let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+  // Get the current directory
+  let currentDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 
-    // Construct the URL of the colormap file
-    let baseUrl = currentDirectory
-            .appendingPathComponent("ScientificColourMaps8")
-            .appendingPathComponent(map)
-    let fileUrl: URL
-    if categorical {
-        // Categorical colormaps are stored in a separate directory
-        fileUrl = baseUrl
-            .appendingPathComponent("CategoricalPalettes")
-            .appendingPathComponent("\(map)S.txt")
+  // Construct the URL of the colormap file
+  let baseUrl =
+    currentDirectory
+    .appendingPathComponent("ScientificColourMaps8")
+    .appendingPathComponent(map)
+  let fileUrl: URL
+  if categorical {
+    // Categorical colormaps are stored in a separate directory
+    fileUrl =
+      baseUrl
+      .appendingPathComponent("CategoricalPalettes")
+      .appendingPathComponent("\(map)S.txt")
+  } else {
+    // Non-categorical colormaps are stored in the base directory
+    fileUrl =
+      baseUrl
+      .appendingPathComponent("\(map).txt")
+  }
+
+  do {
+    // Read the file contents
+    let fileData = try String(contentsOf: fileUrl, encoding: .ascii)
+
+    // Split the file into lines
+    let lines = fileData.split(separator: "\n")
+
+    // Initialize the colormap array
+    var colormap: [RGB] = []
+
+    // Iterate over each line in the file
+    for line in lines {
+      // Split the line into numbers
+      let numbers = line.components(separatedBy: " ").compactMap { Float($0) }
+
+      // Add the numbers to the colormap array
+      colormap.append(RGB(red: numbers[0], green: numbers[1], blue: numbers[2]))
+
+      // Assert that each line has exactly 3 numbers
+      assert(numbers.count == 3)
     }
-    else {
-        // Non-categorical colormaps are stored in the base directory
-        fileUrl = baseUrl
-            .appendingPathComponent("\(map).txt")
-    }
 
-    do {
-        // Read the file contents
-        let fileData = try String(contentsOf: fileUrl, encoding: .ascii)
+    // Assert that the colormap has the correct number of lines
+    assert(colormap.count == (categorical ? 100 : 256))
 
-        // Split the file into lines
-        let lines = fileData.split(separator: "\n")
-
-        // Initialize the colormap array
-        var colormap: [RGB] = []
-
-        // Iterate over each line in the file
-        for line in lines {
-            // Split the line into numbers
-            let numbers = line.components(separatedBy: " ").compactMap { Float($0) }
-
-            // Add the numbers to the colormap array
-            colormap.append(RGB(red: numbers[0], green: numbers[1], blue: numbers[2]))
-
-            // Assert that each line has exactly 3 numbers
-            assert(numbers.count == 3)
-        }
-
-        // Assert that the colormap has the correct number of lines
-        assert(colormap.count == (categorical ? 100 : 256))
-
-        // Return the colormap
-        return colormap
-    }
-    catch {
-        // If an error occurs, return nil
-        return nil
-    }
+    // Return the colormap
+    return colormap
+  } catch {
+    // If an error occurs, return nil
+    return nil
+  }
 }
 
 // Dictionary to store the colormaps
@@ -121,39 +120,40 @@ var maps: [String: ([RGB], [RGB]?)] = [:]
 
 // Iterate over each colormap and read its data
 for map in colormaps {
-    print("Read colormap \(map)")
-    let cm = readMap(map: map, categorical: false)!
-    let cm_categorical = readMap(map: map, categorical: true)
-    maps[map] = (cm, cm_categorical)
+  print("Read colormap \(map)")
+  let cm = readMap(map: map, categorical: false)!
+  let cm_categorical = readMap(map: map, categorical: true)
+  maps[map] = (cm, cm_categorical)
 }
 
 // Header for the generated Swift code
 let fileHeader = """
-        // This file is auto generated by running: swift run CodeGenerator
-        //
-        // The color data is derived from Version 8.0.1 downloadable here:
-        //    https://www.fabiocrameri.ch/colourmaps/
-        //
-        // The source file is covered by licenses:
-        // - Copyright (c) 2023, Fabio Crameri
-        //   see ScientificColourMaps8/+LICENCE.pdf
-        //
-        // - Copyright (c) 2024, Jochen Kiemes
-        //   see LICENSE
-        //
-        extension ScientificColorMap {
-        """
+  // This file is auto generated by running: swift run CodeGenerator
+  //
+  // The color data is derived from Version 8.0.1 downloadable here:
+  //    https://www.fabiocrameri.ch/colourmaps/
+  //
+  // The source file is covered by licenses:
+  // - Copyright (c) 2023, Fabio Crameri
+  //   see ScientificColourMaps8/+LICENCE.pdf
+  //
+  // - Copyright (c) 2024, Jochen Kiemes
+  //   see LICENSE
+  //
+  extension ScientificColorMap {
+  """
 
 // Arrays to store the names of palettes with and without categories
 var palettes: [String] = []
 var palettesWithCategory: [String] = []
 
 // Define the codeDirectory
-let currentDirectory =  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-let codeDirectoryUrl = currentDirectory
-        .appendingPathComponent("Sources")
-        .appendingPathComponent("ScientificColorMaps")
-        .appendingPathComponent("ColorMaps")
+let currentDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+let codeDirectoryUrl =
+  currentDirectory
+  .appendingPathComponent("Sources")
+  .appendingPathComponent("ScientificColorMaps")
+  .appendingPathComponent("ColorMaps")
 
 // Create the code directory, if it does not exist.
 // Ignore any error
@@ -161,64 +161,69 @@ try? FileManager.default.createDirectory(at: codeDirectoryUrl, withIntermediateD
 
 // Iterate over each colormap and generate Swift code for it
 for (map, cmPair) in maps {
-    var swiftCode: [String] = []
+  var swiftCode: [String] = []
 
-    // Add the file header
-    swiftCode.append(fileHeader)
+  // Add the file header
+  swiftCode.append(fileHeader)
 
-    // Determine the maximum color component value
-    let maxValue = cmPair.0.flatMap { [ $0.red, $0.green, $0.blue ]}.max()!
-    let maxValueString = String(format: "maxValue: %.6f", maxValue)
+  // Determine the maximum color component value
+  let maxValue = cmPair.0.flatMap { [$0.red, $0.green, $0.blue] }.max()!
+  let maxValueString = String(format: "maxValue: %.6f", maxValue)
 
-    // Generate dictionary of color maps
-    var colorDict: [RGB : Int] = [:]
-    for (i,rgb) in cmPair.0.enumerated() {
-        colorDict[rgb] = i
+  // Generate dictionary of color maps
+  var colorDict: [RGB: Int] = [:]
+  for (i, rgb) in cmPair.0.enumerated() {
+    colorDict[rgb] = i
+  }
+
+  // Add the palette to the list of palettes
+  palettes.append(map)
+
+  // If the colormap has a categorical version, add it to the list of palettes with categories
+  // and determine the category index of each color
+  var colorCategory: [Int: Int] = [:]
+  if let cm = cmPair.1 {
+    palettesWithCategory.append(map)
+
+    // Add the categorical colormap data
+    for (i, rgb) in cm.enumerated() {
+      let colIndex = colorDict[rgb]!  // should not fail, if category is well defined
+      colorCategory[colIndex] = i
     }
+  }
 
-    // Add the palette to the list of palettes
-    palettes.append(map)
-
-    // If the colormap has a categorical version, add it to the list of palettes with categories
-    // and determine the category index of each color
-    var colorCategory: [Int : Int] = [:]
-    if let cm = cmPair.1 {
-        palettesWithCategory.append(map)
-
-        // Add the categorical colormap data
-        for (i, rgb) in cm.enumerated() {
-            let colIndex = colorDict[rgb]! // should not fail, if category is well defined
-            colorCategory[colIndex] = i
-        }
+  // Add the raw colormap data
+  swiftCode.append("   private static let \(map)_raw: [ScientificColor] = [")
+  for (i, rgb) in cmPair.0.enumerated() {
+    var categoryString = "nil"
+    if let category = colorCategory[i] {
+      categoryString = "\(category)"
     }
+    swiftCode.append(
+      String(
+        format:
+          "      ScientificColor(%d, \(categoryString), %.6f, %.6f, %.6f, maxValueOfMap: %.6f),",
+        i, rgb.red, rgb.green, rgb.blue, maxValue))
+  }
+  swiftCode.append("   ]")
 
-    // Add the raw colormap data
-    swiftCode.append("   private static let \(map)_raw: [ScientificColor] = [")
-    for (i,rgb) in cmPair.0.enumerated() {
-        var categoryString = "nil"
-        if let category = colorCategory[i] {
-           categoryString = "\(category)"
-        }
-        swiftCode.append(String(format: "      ScientificColor(%d, \(categoryString), %.6f, %.6f, %.6f, maxValueOfMap: %.6f),",
-                                i, rgb.red, rgb.green, rgb.blue, maxValue))
-    }
-    swiftCode.append("   ]")
+  // Add the palette to the ScientificColorMap extension
+  swiftCode.append(
+    "   public static let \(map) = ScientificColorMap(\"\(map)\", raw: ScientificColorMap.\(map)_raw, \(maxValueString))"
+  )
 
-    // Add the palette to the ScientificColorMap extension
-    swiftCode.append("   public static let \(map) = ScientificColorMap(\"\(map)\", raw: ScientificColorMap.\(map)_raw, \(maxValueString))")
+  // Close the extension
+  swiftCode.append("}")
 
-    // Close the extension
-    swiftCode.append("}")
+  // ensure file does not end with }
+  swiftCode.append("")
 
-    // ensure file does not end with }
-    swiftCode.append("")
+  // Join the Swift code into a single string
+  let code = swiftCode.joined(separator: "\n")
 
-    // Join the Swift code into a single string
-    let code = swiftCode.joined(separator: "\n")
-
-    // Write the code to a file
-    let fileUrl = codeDirectoryUrl.appendingPathComponent("\(map).swift")
-    try code.write(to: fileUrl, atomically: true, encoding: .utf8)
+  // Write the code to a file
+  let fileUrl = codeDirectoryUrl.appendingPathComponent("\(map).swift")
+  try code.write(to: fileUrl, atomically: true, encoding: .utf8)
 }
 
 palettes.sort()
@@ -230,14 +235,14 @@ swiftCode.append(fileHeader)
 swiftCode.append("   public static func palettes() -> [ScientificColorMap] {")
 swiftCode.append("      [")
 for palette in palettes {
-    swiftCode.append("        ScientificColorMap.\(palette),")
+  swiftCode.append("        ScientificColorMap.\(palette),")
 }
 swiftCode.append("      ]")
 swiftCode.append("   }")
 swiftCode.append("   public static func categorizedPalettes() -> [ScientificColorMap] {")
 swiftCode.append("      [")
 for palette in palettesWithCategory {
-    swiftCode.append("        ScientificColorMap.\(palette),")
+  swiftCode.append("        ScientificColorMap.\(palette),")
 }
 swiftCode.append("      ]")
 swiftCode.append("   }")

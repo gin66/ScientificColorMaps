@@ -8,14 +8,14 @@
 import Foundation
 
 #if canImport(UIKit)
-import UIKit
+  import UIKit
 
-public extension ScientificColor {
-    func asUIColor()-> UIColor {
-        UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
+  extension ScientificColor {
+    public func asUIColor() -> UIColor {
+      UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
-    func into() -> UIColor {
-        asUIColor()
+    public func into() -> UIColor {
+      asUIColor()
     }
-}
+  }
 #endif

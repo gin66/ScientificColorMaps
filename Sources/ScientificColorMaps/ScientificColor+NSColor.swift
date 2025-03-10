@@ -8,15 +8,15 @@
 import Foundation
 
 #if canImport(AppKit)
-import AppKit
+  import AppKit
 
-public extension ScientificColor {
-    func asNSColor()-> NSColor {
-        NSColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
+  extension ScientificColor {
+    public func asNSColor() -> NSColor {
+      NSColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
-    func into() -> NSColor {
-        asNSColor()
+    public func into() -> NSColor {
+      asNSColor()
     }
-}
+  }
 
 #endif
